@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Calendar, Search, ArrowRight, Clock, Users, CheckCircle, AlertCircle } from 'lucide-react';
+import { Calendar, Search, ArrowRight, Clock, Users, CheckCircle, Bookmark, Share2 } from 'lucide-react';
 
 export default function ConferencesPage() {
   const [conferences, setConferences] = useState<any[]>([]);
@@ -36,151 +36,186 @@ export default function ConferencesPage() {
     fetchConferences();
   };
 
-  const getStatusBadge = (status: string) => {
-    switch (status) {
-      case 'open':
-        return (
-          <span className="inline-flex items-center space-x-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-950/80 text-emerald-400 border border-emerald-800">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span>Open for Submission</span>
-          </span>
-        );
-      case 'in_review':
-        return (
-          <span className="inline-flex items-center space-x-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-950/80 text-amber-400 border border-amber-800">
-            <span>In Review</span>
-          </span>
-        );
-      case 'closed':
-        return (
-          <span className="inline-flex items-center space-x-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-800 text-slate-400 border border-slate-700">
-            <span>Closed</span>
-          </span>
-        );
-      default:
-        return (
-          <span className="inline-flex items-center space-x-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-800 text-slate-400">
-            <span>{status}</span>
-          </span>
-        );
-    }
-  };
-
   return (
-    <div className="space-y-8">
-      {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-6 border-b border-slate-800">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight text-white">Academic Conferences</h1>
-          <p className="text-slate-400 mt-1">
-            Browse verified conferences, track submission deadlines, and submit your research.
-          </p>
-        </div>
-
-        {/* Filters & Search */}
-        <div className="flex flex-col sm:flex-row items-center gap-3">
-          <form onSubmit={handleSearchSubmit} className="relative w-full sm:w-64">
-            <Search className="h-4 w-4 text-slate-500 absolute left-3 top-3" />
-            <input
-              type="text"
-              placeholder="Search VLDB, SIGMOD..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="w-full bg-slate-900 border border-slate-800 rounded-xl pl-9 pr-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
-            />
-          </form>
-
-          <select
-            value={statusFilter}
-            onChange={(e) => setStatusFilter(e.target.value)}
-            className="w-full sm:w-auto bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-300 focus:outline-none focus:border-blue-500"
-          >
-            <option value="">All Statuses</option>
-            <option value="open">Open</option>
-            <option value="in_review">In Review</option>
-            <option value="closed">Closed</option>
-          </select>
-        </div>
+    <div className="max-w-5xl mx-auto pb-16">
+      {/* Editorial Header */}
+      <div className="border-b border-black pb-4 mb-8">
+        <span className="text-xs font-bold uppercase tracking-widest text-gray-500">
+          INDEX & PROCEEDINGS
+        </span>
+        <h1 className="text-4xl sm:text-5xl font-black font-serif text-black mt-1">
+          Academic Conferences
+        </h1>
+        <p className="text-sm text-gray-600 mt-2 max-w-2xl">
+          Browse peer-reviewed international conferences, submission deadlines, and call for papers managed through relational DBMS pipelines.
+        </p>
       </div>
 
-      {/* Conference Grid */}
+      {/* Filter and Search Bar */}
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pb-6 border-b border-gray-200 mb-8">
+        {/* Status Filter Tabs */}
+        <div className="flex items-center space-x-2 text-xs font-semibold overflow-x-auto w-full sm:w-auto">
+          <button
+            onClick={() => setStatusFilter('')}
+            className={`px-3 py-1.5 border transition ${
+              statusFilter === '' 
+                ? 'bg-black text-white border-black font-bold' 
+                : 'bg-white text-gray-700 border-gray-300 hover:border-black'
+            }`}
+          >
+            All Statuses
+          </button>
+          <button
+            onClick={() => setStatusFilter('open')}
+            className={`px-3 py-1.5 border transition ${
+              statusFilter === 'open' 
+                ? 'bg-black text-white border-black font-bold' 
+                : 'bg-white text-gray-700 border-gray-300 hover:border-black'
+            }`}
+          >
+            Call For Papers Open
+          </button>
+          <button
+            onClick={() => setStatusFilter('in_review')}
+            className={`px-3 py-1.5 border transition ${
+              statusFilter === 'in_review' 
+                ? 'bg-black text-white border-black font-bold' 
+                : 'bg-white text-gray-700 border-gray-300 hover:border-black'
+            }`}
+          >
+            Under Review
+          </button>
+          <button
+            onClick={() => setStatusFilter('closed')}
+            className={`px-3 py-1.5 border transition ${
+              statusFilter === 'closed' 
+                ? 'bg-black text-white border-black font-bold' 
+                : 'bg-white text-gray-700 border-gray-300 hover:border-black'
+            }`}
+          >
+            Archived / Closed
+          </button>
+        </div>
+
+        {/* Search Input */}
+        <form onSubmit={handleSearchSubmit} className="flex items-center w-full sm:w-72">
+          <div className="relative w-full">
+            <Search className="h-4 w-4 absolute left-3 top-2.5 text-gray-400" />
+            <input
+              type="text"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search by name or acronym..."
+              className="w-full pl-9 pr-3 py-1.5 text-xs border border-gray-300 focus:outline-none focus:border-black"
+            />
+          </div>
+          <button
+            type="submit"
+            className="ml-2 bg-black hover:bg-gray-800 text-white text-xs font-bold px-3 py-1.5"
+          >
+            Go
+          </button>
+        </form>
+      </div>
+
+      {/* Conference List in Editorial Cards */}
       {loading ? (
-        <div className="py-20 text-center text-slate-500">Loading conferences...</div>
+        <div className="text-center py-16 text-gray-500 font-serif text-lg">
+          Loading academic proceedings...
+        </div>
       ) : conferences.length === 0 ? (
-        <div className="py-16 text-center bg-slate-900/50 border border-slate-800 rounded-2xl">
-          <p className="text-slate-400 text-sm">No conferences match your filter.</p>
+        <div className="text-center py-16 border border-dashed border-gray-300 p-8">
+          <p className="text-gray-600 font-serif text-lg mb-2">No conferences match your query</p>
+          <p className="text-xs text-gray-500">Try adjusting your search criteria or resetting filters.</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="divide-y divide-gray-200 border-b border-gray-200">
           {conferences.map((conf) => {
             const isOpen = conf.status === 'open';
-            const closeDate = new Date(conf.submission_close_at).toLocaleDateString('en-US', {
-              month: 'short',
-              day: 'numeric',
-              year: 'numeric',
-            });
+            const closeDate = conf.submission_close_at
+              ? new Date(conf.submission_close_at).toLocaleDateString('en-US', {
+                  month: 'short',
+                  day: 'numeric',
+                  year: 'numeric',
+                })
+              : 'TBA';
 
             return (
-              <div
-                key={conf.conference_id}
-                className="bg-slate-900/80 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between hover:border-slate-700 transition duration-150 shadow-lg group"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-xs font-black tracking-wider uppercase px-2.5 py-1 rounded bg-blue-950/70 text-blue-400 border border-blue-800/80 font-mono">
-                      {conf.acronym} {conf.year}
+              <article key={conf.conference_id} className="py-8 grid grid-cols-1 md:grid-cols-12 gap-6 items-start group">
+                <div className="md:col-span-8 space-y-2.5">
+                  <div className="flex items-center space-x-2 text-xs">
+                    <span className={`px-2 py-0.5 uppercase tracking-wider text-[10px] font-bold ${
+                      isOpen ? 'bg-emerald-100 text-emerald-800' : 'bg-gray-100 text-gray-700'
+                    }`}>
+                      {conf.status.replace('_', ' ').toUpperCase()}
                     </span>
-                    {getStatusBadge(conf.status)}
+                    <span className="text-gray-400">•</span>
+                    <span className="font-bold text-[#005a9c]">{conf.acronym} {conf.year}</span>
                   </div>
 
-                  <h2 className="text-lg font-bold text-white group-hover:text-blue-400 transition-colors line-clamp-2">
-                    {conf.name}
+                  <h2 className="text-2xl font-black font-serif text-black leading-tight group-hover:text-[#c8102e] transition">
+                    <Link href={`/conferences/${conf.conference_id}`}>
+                      {conf.name}
+                    </Link>
                   </h2>
 
-                  <p className="text-xs text-slate-400 mt-2 line-clamp-3 leading-relaxed">
+                  <p className="text-sm text-gray-700 leading-relaxed pt-1 line-clamp-2">
                     {conf.description}
                   </p>
-                </div>
 
-                <div className="mt-6 pt-4 border-t border-slate-800/80 space-y-3">
-                  <div className="flex items-center justify-between text-xs text-slate-400">
-                    <div className="flex items-center space-x-1.5">
-                      <Clock className="h-3.5 w-3.5 text-blue-400" />
-                      <span>Deadline: <strong className="text-slate-200">{closeDate}</strong></span>
-                    </div>
-                    <div className="flex items-center space-x-1.5">
-                      <Users className="h-3.5 w-3.5 text-slate-500" />
-                      <span>{conf.total_submissions} papers</span>
-                    </div>
+                  <div className="flex flex-wrap items-center gap-4 text-xs text-gray-500 pt-2">
+                    <span className="flex items-center space-x-1">
+                      <Clock className="h-3.5 w-3.5" />
+                      <span>Deadline: <strong className="text-gray-800">{closeDate}</strong></span>
+                    </span>
+                    <span>•</span>
+                    <span className="flex items-center space-x-1">
+                      <Users className="h-3.5 w-3.5" />
+                      <span>{conf.total_submissions} Papers Received</span>
+                    </span>
                   </div>
 
-                  <div className="flex items-center gap-2 pt-2">
+                  <div className="pt-3 flex items-center space-x-4">
                     <Link
                       href={`/conferences/${conf.conference_id}`}
-                      className="flex-1 text-center bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium py-2 rounded-xl text-xs transition duration-150"
+                      className="bg-black hover:bg-gray-800 text-white text-xs font-bold uppercase tracking-wider px-4 py-2 transition"
                     >
-                      View Details
+                      View Details & CFP
                     </Link>
-
-                    {isOpen ? (
+                    {isOpen && (
                       <Link
                         href={`/conferences/${conf.conference_id}/submit`}
-                        className="flex-1 text-center bg-blue-600 hover:bg-blue-500 text-white font-medium py-2 rounded-xl text-xs transition duration-150 flex items-center justify-center space-x-1 shadow-md shadow-blue-600/20"
+                        className="bg-[#c8102e] hover:bg-[#a50d26] text-white text-xs font-bold uppercase tracking-wider px-4 py-2 transition"
                       >
-                        <span>Submit Paper</span>
-                        <ArrowRight className="h-3 w-3" />
+                        Submit Paper
                       </Link>
-                    ) : (
-                      <button
-                        disabled
-                        className="flex-1 text-center bg-slate-800/40 text-slate-500 font-medium py-2 rounded-xl text-xs cursor-not-allowed"
-                      >
-                        Submissions Closed
-                      </button>
                     )}
                   </div>
                 </div>
-              </div>
+
+                {/* Right Artwork */}
+                <div className="md:col-span-4 flex justify-end">
+                  <div className="w-full max-w-[240px] aspect-[4/3] bg-neutral-100 border border-gray-200 p-5 flex flex-col justify-between">
+                    <div className="flex justify-between items-start">
+                      <span className="font-serif font-black text-3xl text-gray-900">
+                        {conf.acronym}
+                      </span>
+                      <span className="text-[11px] font-bold text-gray-600 bg-white px-2 py-0.5 border border-gray-300">
+                        {conf.year}
+                      </span>
+                    </div>
+                    <div>
+                      <span className="text-[10px] uppercase font-bold text-gray-500 tracking-wider block">
+                        STATUS
+                      </span>
+                      <span className="text-xs font-bold text-gray-900">
+                        {conf.status.toUpperCase()}
+                      </span>
+                    </div>
+                    <div className="h-1 w-full bg-[#c8102e]"></div>
+                  </div>
+                </div>
+              </article>
             );
           })}
         </div>

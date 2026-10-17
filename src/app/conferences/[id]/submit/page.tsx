@@ -3,7 +3,7 @@
 import { useState, useEffect, Suspense } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft, Plus, Trash2, Send, AlertCircle, CheckCircle, Tag, Users, FileText } from 'lucide-react';
+import { ArrowLeft, Plus, Trash2, Send, AlertCircle, CheckCircle, Tag, Users, FileText, ChevronLeft } from 'lucide-react';
 
 function SubmitPaperContent() {
   const params = useParams();
@@ -112,48 +112,50 @@ function SubmitPaperContent() {
   };
 
   if (loading) {
-    return <div className="py-24 text-center text-slate-500">Preparing submission form...</div>;
+    return <div className="py-24 text-center text-gray-500 font-serif text-lg">Preparing submission portal...</div>;
   }
 
   return (
-    <div className="max-w-3xl mx-auto space-y-6">
+    <div className="max-w-3xl mx-auto space-y-8 pb-16">
       <Link
         href={`/conferences/${conferenceId}`}
-        className="inline-flex items-center space-x-1.5 text-xs text-slate-400 hover:text-white transition-colors"
+        className="inline-flex items-center space-x-1.5 text-xs font-bold uppercase tracking-wider text-gray-500 hover:text-black transition-colors"
       >
-        <ArrowLeft className="h-3.5 w-3.5" />
+        <ChevronLeft className="h-4 w-4" />
         <span>Back to {conference?.acronym || 'Conference'}</span>
       </Link>
 
-      <div className="bg-slate-900/90 border border-slate-800 rounded-3xl p-8 shadow-2xl backdrop-blur">
-        <div className="mb-6 pb-6 border-b border-slate-800">
-          <span className="text-xs font-mono font-bold uppercase px-2.5 py-1 rounded bg-blue-950 text-blue-400 border border-blue-800">
-            {conference?.acronym} {conference?.year}
+      <div className="bg-white border-2 border-black p-8 sm:p-10 shadow-sm">
+        <div className="mb-8 pb-6 border-b border-gray-200">
+          <span className="text-[10px] font-bold uppercase tracking-widest text-black bg-gray-100 px-2.5 py-1 border border-gray-300">
+            {conference?.acronym} {conference?.year} • MANUSCRIPT SUBMISSION
           </span>
-          <h1 className="text-2xl font-bold tracking-tight text-white mt-2">Submit New Research Paper</h1>
-          <p className="text-xs text-slate-400 mt-1">
-            Fill in the metadata, select matching research topics, and add co-authors. All submissions are stored with full transactional guarantees.
+          <h1 className="text-3xl sm:text-4xl font-serif font-black text-black mt-3">
+            Submit Research Manuscript
+          </h1>
+          <p className="text-xs text-gray-600 mt-2 leading-relaxed">
+            All submissions are processed under atomic PostgreSQL stored procedures with deferred unique constraint validation and full audit tracking.
           </p>
         </div>
 
         {error && (
-          <div className="mb-6 p-3 rounded-lg bg-red-950/50 border border-red-800/80 text-red-300 text-xs flex items-center space-x-2">
-            <AlertCircle className="h-4 w-4 shrink-0 text-red-400" />
+          <div className="mb-6 p-4 bg-red-50 border border-red-200 text-red-700 text-xs flex items-center space-x-2">
+            <AlertCircle className="h-4 w-4 shrink-0 text-red-600" />
             <span>{error}</span>
           </div>
         )}
 
         {success && (
-          <div className="mb-6 p-4 rounded-xl bg-emerald-950/50 border border-emerald-800 text-emerald-300 text-sm flex items-center space-x-2">
-            <CheckCircle className="h-5 w-5 shrink-0 text-emerald-400" />
-            <span>Paper submitted successfully! Redirecting to your author dashboard...</span>
+          <div className="mb-6 p-4 bg-emerald-50 border border-emerald-300 text-emerald-800 text-sm flex items-center space-x-2">
+            <CheckCircle className="h-5 w-5 shrink-0 text-emerald-600" />
+            <span>Paper recorded in PostgreSQL! Redirecting to your dashboard...</span>
           </div>
         )}
 
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Paper Title */}
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">
+            <label className="block text-xs font-bold uppercase tracking-wider text-gray-800 mb-2">
               Paper Title *
             </label>
             <input
@@ -162,13 +164,13 @@ function SubmitPaperContent() {
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="e.g. Adaptive Indexing for High-Throughput Stream Processing"
-              className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+              className="w-full bg-white border border-gray-400 p-3 text-sm text-black placeholder-gray-400 focus:outline-none focus:border-black"
             />
           </div>
 
           {/* Abstract */}
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">
+            <label className="block text-xs font-bold uppercase tracking-wider text-gray-800 mb-2">
               Abstract *
             </label>
             <textarea
@@ -177,17 +179,17 @@ function SubmitPaperContent() {
               value={abstract}
               onChange={(e) => setAbstract(e.target.value)}
               placeholder="Describe your research problem, methodology, key findings, and empirical results..."
-              className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 leading-relaxed"
+              className="w-full bg-white border border-gray-400 p-3 text-sm text-black placeholder-gray-400 focus:outline-none focus:border-black leading-relaxed"
             ></textarea>
           </div>
 
           {/* Topics Multi-Select */}
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2 flex items-center space-x-1.5">
-              <Tag className="h-3.5 w-3.5 text-blue-400" />
+            <label className="block text-xs font-bold uppercase tracking-wider text-gray-800 mb-2 flex items-center space-x-1.5">
+              <Tag className="h-3.5 w-3.5 text-black" />
               <span>Research Topics (Select all that apply) *</span>
             </label>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 pt-1">
               {topics.map((topic) => {
                 const isSelected = selectedTopics.includes(topic.topic_id);
                 return (
@@ -195,10 +197,10 @@ function SubmitPaperContent() {
                     type="button"
                     key={topic.topic_id}
                     onClick={() => toggleTopic(topic.topic_id)}
-                    className={`text-xs px-3 py-1.5 rounded-lg border font-medium transition duration-150 ${
+                    className={`text-xs px-3 py-1.5 border font-semibold transition ${
                       isSelected
-                        ? 'bg-blue-600 border-blue-500 text-white shadow-sm'
-                        : 'bg-slate-950 border-slate-800 text-slate-400 hover:border-slate-700 hover:text-slate-200'
+                        ? 'bg-black text-white border-black'
+                        : 'bg-white border-gray-300 text-gray-700 hover:border-black'
                     }`}
                   >
                     {topic.topic_name}
@@ -211,14 +213,14 @@ function SubmitPaperContent() {
           {/* Authors List */}
           <div className="pt-2">
             <div className="flex items-center justify-between mb-3">
-              <label className="text-xs font-semibold uppercase tracking-wider text-slate-300 flex items-center space-x-1.5">
-                <Users className="h-3.5 w-3.5 text-blue-400" />
-                <span>Authors & Co-Authors</span>
+              <label className="text-xs font-bold uppercase tracking-wider text-gray-800 flex items-center space-x-1.5">
+                <Users className="h-3.5 w-3.5 text-black" />
+                <span>Authors & Order</span>
               </label>
               <button
                 type="button"
                 onClick={addCoAuthor}
-                className="text-xs text-blue-400 hover:text-blue-300 flex items-center space-x-1 font-medium"
+                className="text-xs text-[#005a9c] hover:underline flex items-center space-x-1 font-bold"
               >
                 <Plus className="h-3.5 w-3.5" />
                 <span>Add Co-Author</span>
@@ -226,14 +228,14 @@ function SubmitPaperContent() {
             </div>
 
             {/* Submitter (Author 1 - Corresponding) */}
-            <div className="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800 mb-3 text-xs flex items-center justify-between">
+            <div className="p-4 bg-gray-50 border border-gray-300 mb-3 text-xs flex items-center justify-between">
               <div>
-                <span className="font-semibold text-white block">
+                <span className="font-bold text-black block text-sm">
                   1. {session?.fullName} (You)
                 </span>
-                <span className="text-slate-500 text-[11px]">{session?.email}</span>
+                <span className="text-gray-500 text-xs">{session?.email}</span>
               </div>
-              <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-blue-950 text-blue-400 border border-blue-800 uppercase">
+              <span className="text-[10px] font-bold px-2 py-0.5 bg-black text-white uppercase tracking-wider">
                 Corresponding Author
               </span>
             </div>
@@ -242,16 +244,16 @@ function SubmitPaperContent() {
             {coAuthors.map((co, idx) => (
               <div
                 key={idx}
-                className="p-3 rounded-xl bg-slate-950 border border-slate-800/80 mb-2 flex items-center gap-3 text-xs"
+                className="p-3 bg-white border border-gray-300 mb-2 flex items-center gap-3 text-xs"
               >
-                <span className="font-mono text-slate-500 w-4">{idx + 2}.</span>
+                <span className="font-bold text-gray-500 w-4">{idx + 2}.</span>
                 <input
                   type="text"
                   required
                   placeholder="Co-Author Full Name"
                   value={co.fullName}
                   onChange={(e) => updateCoAuthor(idx, 'fullName', e.target.value)}
-                  className="flex-1 bg-slate-900 border border-slate-800 rounded-lg px-3 py-1.5 text-white placeholder-slate-600 focus:outline-none focus:border-blue-500"
+                  className="flex-1 border border-gray-300 p-2 text-black focus:outline-none focus:border-black text-xs"
                 />
                 <input
                   type="email"
@@ -259,12 +261,12 @@ function SubmitPaperContent() {
                   placeholder="coauthor@institution.edu"
                   value={co.email}
                   onChange={(e) => updateCoAuthor(idx, 'email', e.target.value)}
-                  className="flex-1 bg-slate-900 border border-slate-800 rounded-lg px-3 py-1.5 text-white placeholder-slate-600 focus:outline-none focus:border-blue-500"
+                  className="flex-1 border border-gray-300 p-2 text-black focus:outline-none focus:border-black text-xs"
                 />
                 <button
                   type="button"
                   onClick={() => removeCoAuthor(idx)}
-                  className="text-slate-500 hover:text-red-400 p-1 transition-colors"
+                  className="text-gray-400 hover:text-red-600 p-1 transition"
                   title="Remove author"
                 >
                   <Trash2 className="h-4 w-4" />
@@ -274,18 +276,18 @@ function SubmitPaperContent() {
           </div>
 
           {/* Submit Button */}
-          <div className="pt-4 border-t border-slate-800">
+          <div className="pt-6 border-t border-gray-200">
             <button
               type="submit"
               disabled={submitting || success}
-              className="w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3 rounded-xl transition duration-150 flex items-center justify-center space-x-2 shadow-lg shadow-blue-600/30 disabled:opacity-50"
+              className="w-full bg-[#c8102e] hover:bg-[#a50d26] text-white font-bold text-xs uppercase tracking-wider py-3.5 transition flex items-center justify-center space-x-2 disabled:opacity-50"
             >
               {submitting ? (
-                <span>Submitting to PostgreSQL...</span>
+                <span>Executing Stored Procedure...</span>
               ) : (
                 <>
                   <Send className="h-4 w-4" />
-                  <span>Submit Paper for Review</span>
+                  <span>Submit Manuscript for Double-Blind Review</span>
                 </>
               )}
             </button>
@@ -298,7 +300,7 @@ function SubmitPaperContent() {
 
 export default function SubmitPaperPage() {
   return (
-    <Suspense fallback={<div className="py-24 text-center text-slate-500">Loading submission form...</div>}>
+    <Suspense fallback={<div className="py-24 text-center text-gray-500 font-serif">Loading submission portal...</div>}>
       <SubmitPaperContent />
     </Suspense>
   );

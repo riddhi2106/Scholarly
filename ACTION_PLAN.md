@@ -1,4 +1,4 @@
-# Scholarly (ConfDB) — Project Execution Plan
+# Scholarly — Project Execution Plan
 
 > **Course**: DBMS Experiential Learning — Level 3 Project (PES University)  
 > **Tech Stack**: Next.js (Fullstack App Router), PostgreSQL (`pgvector`), Tailwind/CSS, TypeScript  
@@ -8,7 +8,7 @@
 
 ## 1. Project Overview & Scope Alignment
 
-The project is an academic peer-review management system (**ConfDB / Scholarly**). The system contains 20 relational tables, pgvector embeddings, and full-text search.
+The project is an academic peer-review management system (**Scholarly**). The system contains 20 relational tables, pgvector embeddings, and full-text search.
 
 Your assigned responsibility covers the **Core Platform & Submissions Pipeline**, consisting of **12 core tables**:
 1. **Identity & Profiles**: `PEOPLE`, `USER_ACCOUNTS`, `AUTHOR_PROFILES`, `REVIEWER_PROFILES`
@@ -187,7 +187,7 @@ Script and document test cases where the database rejects invalid operations:
 ### Phase 7: Documentation, Demonstration Artifacts & Git Hand-off
 
 - [ ] **Data Dictionary**: Document every column, data type, nullability, keys, and constraints for all 12 tables.
-- [ ] **Relational Schema & ER Diagram Documentation**: Include the finalized diagrams matching ConfDB.
+- [ ] **Relational Schema & ER Diagram Documentation**: Include the finalized diagrams matching Scholarly.
 - [ ] **Query Execution Logs**: Save CLI output of all test queries, joins, and constraint validations.
 - [ ] **Application Walkthrough & Screenshots**: High-resolution screenshots of Register/Login, Conference List, Submission form, and Author Dashboard.
 - [ ] **README**: Clean instructions on setting up PostgreSQL, running DDL scripts, seeding data, and starting `npm run dev`.

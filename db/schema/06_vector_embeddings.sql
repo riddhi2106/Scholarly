@@ -1,5 +1,5 @@
 -- ============================================================================
--- Scholarly (ConfDB) - Vector Database Extension (pgvector)
+-- Scholarly - Vector Database Extension (pgvector)
 -- Demonstrates Vector Database Paradigm (Option 2: SQL + Vector Database)
 -- Tables: PAPER_EMBEDDINGS, REVIEWER_EMBEDDINGS
 -- Dimension: 384 (standard for fast embeddings e.g., all-MiniLM-L6-v2)

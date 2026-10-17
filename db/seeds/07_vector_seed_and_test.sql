@@ -1,5 +1,5 @@
 -- ============================================================================
--- Scholarly (ConfDB) - Sample Vector Embeddings & Similarity Search Demo
+-- Scholarly - Sample Vector Embeddings & Similarity Search Demo
 -- Populates mock embeddings for papers and demonstrates cosine similarity search
 -- ============================================================================
 

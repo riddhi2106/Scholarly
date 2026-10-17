@@ -1,5 +1,5 @@
 -- ============================================================================
--- Scholarly (ConfDB) - Core Tables Schema (DDL)
+-- Scholarly - Core Tables Schema (DDL)
 -- Module: Identity, Affiliations, Conferences, Papers & Topics (12 Tables)
 -- Database: PostgreSQL 14+
 -- ============================================================================

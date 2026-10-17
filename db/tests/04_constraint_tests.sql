@@ -1,5 +1,5 @@
 -- ============================================================================
--- Scholarly (ConfDB) - Constraint & Negative Validation Tests
+-- Scholarly - Constraint & Negative Validation Tests
 -- Demonstrates that the database enforces all integrity rules and rejects invalid operations.
 -- ============================================================================
 

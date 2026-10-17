@@ -1,5 +1,5 @@
 -- ============================================================================
--- Scholarly (ConfDB) - Realistic Sample Data (Seed Script)
+-- Scholarly - Realistic Sample Data (Seed Script)
 -- Demonstrates realistic entities across all 12 tables.
 -- ============================================================================
 
@@ -21,7 +21,7 @@ SELECT setval('affiliations_affiliation_id_seq', (SELECT MAX(affiliation_id) FRO
 INSERT INTO PEOPLE (person_id, full_name, email) VALUES
 (1, 'Alice Johnson', 'alice@mit.edu'),
 (2, 'Bob Chen', 'bob@stanford.edu'),
-(3, 'Riddhi Sharma', 'riddhi@pes.edu'),
+(3, 'Riddhi Mundada', 'riddhi@pes.edu'),
 (4, 'David Kumar', 'david@iisc.ac.in'),
 (5, 'Elena Rostova', 'elena@ox.ac.uk'),
 (6, 'Frank Miller', 'frank@cmu.edu'),
@@ -165,7 +165,7 @@ SELECT setval('papers_paper_id_seq', (SELECT MAX(paper_id) FROM PAPERS));
 
 -- Paper Authors (Supporting multi-authors per paper)
 INSERT INTO PAPER_AUTHORS (paper_id, author_person_id, author_order, is_corresponding) VALUES
-(1, 3, 1, TRUE),   -- Riddhi Sharma (Corresponding & 1st author)
+(1, 3, 1, TRUE),   -- Riddhi Mundada (Corresponding & 1st author)
 (1, 4, 2, FALSE),  -- David Kumar (2nd author)
 (2, 4, 1, TRUE),   -- David Kumar (Corresponding & 1st author)
 (2, 2, 2, FALSE),  -- Bob Chen (2nd author)

@@ -1,5 +1,5 @@
 -- ============================================================================
--- Scholarly (ConfDB) - Complex Analytical Queries
+-- Scholarly - Complex Analytical Queries
 -- Covers: JOIN, GROUP BY, HAVING, ORDER BY, Aggregates, Subqueries, Full-Text Search
 -- ============================================================================
 
