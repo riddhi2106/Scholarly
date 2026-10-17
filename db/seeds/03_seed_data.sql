@@ -33,12 +33,12 @@ SELECT setval('people_person_id_seq', (SELECT MAX(person_id) FROM PEOPLE));
 
 -- 3. USER_ACCOUNTS
 INSERT INTO USER_ACCOUNTS (account_id, person_id, password_hash, system_role, account_status) VALUES
-(1, 1, '$2a$10$WdYj/s9bL4qB9b9k6tA.g.iU6D8z/5eWnB7pYyR9Q2sWJbC4d8v9G', 'admin', 'active'),
-(2, 2, '$2a$10$WdYj/s9bL4qB9b9k6tA.g.iU6D8z/5eWnB7pYyR9Q2sWJbC4d8v9G', 'user', 'active'),
-(3, 3, '$2a$10$WdYj/s9bL4qB9b9k6tA.g.iU6D8z/5eWnB7pYyR9Q2sWJbC4d8v9G', 'admin', 'active'),
-(4, 4, '$2a$10$WdYj/s9bL4qB9b9k6tA.g.iU6D8z/5eWnB7pYyR9Q2sWJbC4d8v9G', 'user', 'active'),
-(5, 5, '$2a$10$WdYj/s9bL4qB9b9k6tA.g.iU6D8z/5eWnB7pYyR9Q2sWJbC4d8v9G', 'user', 'active'),
-(6, 6, '$2a$10$WdYj/s9bL4qB9b9k6tA.g.iU6D8z/5eWnB7pYyR9Q2sWJbC4d8v9G', 'user', 'active')
+(1, 1, '$2b$10$Ml9Y/UqfDW0MHnSjM8YDcueUrcQEvcVesLBN5/J6LV/EznQmby4pa', 'admin', 'active'),
+(2, 2, '$2b$10$Ml9Y/UqfDW0MHnSjM8YDcueUrcQEvcVesLBN5/J6LV/EznQmby4pa', 'user', 'active'),
+(3, 3, '$2b$10$Ml9Y/UqfDW0MHnSjM8YDcueUrcQEvcVesLBN5/J6LV/EznQmby4pa', 'admin', 'active'),
+(4, 4, '$2b$10$Ml9Y/UqfDW0MHnSjM8YDcueUrcQEvcVesLBN5/J6LV/EznQmby4pa', 'user', 'active'),
+(5, 5, '$2b$10$Ml9Y/UqfDW0MHnSjM8YDcueUrcQEvcVesLBN5/J6LV/EznQmby4pa', 'user', 'active'),
+(6, 6, '$2b$10$Ml9Y/UqfDW0MHnSjM8YDcueUrcQEvcVesLBN5/J6LV/EznQmby4pa', 'user', 'active')
 ON CONFLICT (account_id) DO NOTHING;
 
 SELECT setval('user_accounts_account_id_seq', (SELECT MAX(account_id) FROM USER_ACCOUNTS));
