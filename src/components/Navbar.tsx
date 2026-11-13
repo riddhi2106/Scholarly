@@ -88,6 +88,13 @@ export default function Navbar() {
                 {session ? (
                   <div className="flex items-center space-x-2 text-xs">
                     <Link
+                      href="/reviewer"
+                      className="hidden sm:flex items-center font-semibold text-gray-700 hover:text-[#c8102e] transition px-2 py-1 border border-gray-200 rounded-sm bg-gray-50"
+                      title="Review assignments"
+                    >
+                      Reviewer
+                    </Link>
+                    <Link
                       href="/dashboard"
                       className="flex items-center space-x-1.5 font-semibold text-gray-900 hover:text-[#c8102e] transition px-2 py-1 border border-gray-200 rounded-sm bg-gray-50"
                     >
