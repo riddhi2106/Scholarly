@@ -1,0 +1,319 @@
+graph scholarly_er {
+  layout=neato; overlap=prism; overlap_scaling=-9; sep="+13";
+  splines=true; esep="+6"; mode=major; maxiter=4000;
+  graph [fontname="Helvetica", labelloc="t", fontsize=26,         label="Scholarly  -  Entity Relationship Diagram (Chen notation)\n "];
+  node [fontname="Helvetica", color="#000000", penwidth=1.1];
+  edge [fontname="Helvetica", fontsize=9, color="#000000",        penwidth=1.0];
+  "PERSON" [shape=box, peripheries=1, label="PERSON", fontsize=13, style=filled, fillcolor="#e6e6e6", width=1.5, height=0.5];
+  "USER_ACCOUNT" [shape=box, peripheries=1, label="USER_ACCOUNT", fontsize=13, style=filled, fillcolor="#e6e6e6", width=1.5, height=0.5];
+  "AFFILIATION" [shape=box, peripheries=1, label="AFFILIATION", fontsize=13, style=filled, fillcolor="#e6e6e6", width=1.5, height=0.5];
+  "CONFERENCE" [shape=box, peripheries=1, label="CONFERENCE", fontsize=13, style=filled, fillcolor="#e6e6e6", width=1.5, height=0.5];
+  "PAPER" [shape=box, peripheries=1, label="PAPER", fontsize=13, style=filled, fillcolor="#e6e6e6", width=1.5, height=0.5];
+  "TOPIC" [shape=box, peripheries=1, label="TOPIC", fontsize=13, style=filled, fillcolor="#e6e6e6", width=1.5, height=0.5];
+  "ASSIGNMENT" [shape=box, peripheries=1, label="ASSIGNMENT", fontsize=13, style=filled, fillcolor="#e6e6e6", width=1.5, height=0.5];
+  "REVIEW" [shape=box, peripheries=1, label="REVIEW", fontsize=13, style=filled, fillcolor="#e6e6e6", width=1.5, height=0.5];
+  "DECISION" [shape=box, peripheries=1, label="DECISION", fontsize=13, style=filled, fillcolor="#e6e6e6", width=1.5, height=0.5];
+  "AUDIT_ENTRY" [shape=box, peripheries=1, label="AUDIT_ENTRY", fontsize=13, style=filled, fillcolor="#e6e6e6", width=1.5, height=0.5];
+  "AUTHOR" [shape=box, peripheries=1, label="AUTHOR", fontsize=13, style=filled, fillcolor="#e6e6e6", width=1.5, height=0.5];
+  "REVIEWER" [shape=box, peripheries=1, label="REVIEWER", fontsize=13, style=filled, fillcolor="#e6e6e6", width=1.5, height=0.5];
+  "PAPER_EMBEDDING" [shape=box, peripheries=2, label="PAPER_EMBEDDING", fontsize=13, style=filled, fillcolor="#e6e6e6", width=1.5, height=0.5];
+  "REVIEWER_EMBEDDING" [shape=box, peripheries=2, label="REVIEWER_EMBEDDING", fontsize=13, style=filled, fillcolor="#e6e6e6", width=1.5, height=0.5];
+  "PERSON__a0" [shape=ellipse, label=<<U>person_id</U>>, fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "PERSON" -- "PERSON__a0" [len=0.9, color="#000000"];
+
+  "PERSON__a1" [shape=ellipse, label="full_name", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "PERSON" -- "PERSON__a1" [len=0.9, color="#000000"];
+
+  "PERSON__a2" [shape=ellipse, label="email", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "PERSON" -- "PERSON__a2" [len=0.9, color="#000000"];
+
+  "PERSON__a3" [shape=ellipse, label="created_at", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "PERSON" -- "PERSON__a3" [len=0.9, color="#000000"];
+
+  "USER_ACCOUNT__a0" [shape=ellipse, label=<<U>account_id</U>>, fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "USER_ACCOUNT" -- "USER_ACCOUNT__a0" [len=0.9, color="#000000"];
+
+  "USER_ACCOUNT__a1" [shape=ellipse, label="password_hash", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "USER_ACCOUNT" -- "USER_ACCOUNT__a1" [len=0.9, color="#000000"];
+
+  "USER_ACCOUNT__a2" [shape=ellipse, label="system_role", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "USER_ACCOUNT" -- "USER_ACCOUNT__a2" [len=0.9, color="#000000"];
+
+  "USER_ACCOUNT__a3" [shape=ellipse, label="account_status", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "USER_ACCOUNT" -- "USER_ACCOUNT__a3" [len=0.9, color="#000000"];
+
+  "USER_ACCOUNT__a4" [shape=ellipse, label="created_at", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "USER_ACCOUNT" -- "USER_ACCOUNT__a4" [len=0.9, color="#000000"];
+
+  "USER_ACCOUNT__a5" [shape=ellipse, label="last_login_at", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "USER_ACCOUNT" -- "USER_ACCOUNT__a5" [len=0.9, color="#000000"];
+
+  "AFFILIATION__a0" [shape=ellipse, label=<<U>affiliation_id</U>>, fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "AFFILIATION" -- "AFFILIATION__a0" [len=0.9, color="#000000"];
+
+  "AFFILIATION__a1" [shape=ellipse, label="institution_name", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "AFFILIATION" -- "AFFILIATION__a1" [len=0.9, color="#000000"];
+
+  "AFFILIATION__a2" [shape=ellipse, label="institution_domain", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "AFFILIATION" -- "AFFILIATION__a2" [len=0.9, color="#000000"];
+
+  "AFFILIATION__a3" [shape=ellipse, label="country_code", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "AFFILIATION" -- "AFFILIATION__a3" [len=0.9, color="#000000"];
+
+  "CONFERENCE__a0" [shape=ellipse, label=<<U>conference_id</U>>, fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "CONFERENCE" -- "CONFERENCE__a0" [len=0.9, color="#000000"];
+
+  "CONFERENCE__a1" [shape=ellipse, label="name", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "CONFERENCE" -- "CONFERENCE__a1" [len=0.9, color="#000000"];
+
+  "CONFERENCE__a2" [shape=ellipse, label="acronym", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "CONFERENCE" -- "CONFERENCE__a2" [len=0.9, color="#000000"];
+
+  "CONFERENCE__a3" [shape=ellipse, label="year", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "CONFERENCE" -- "CONFERENCE__a3" [len=0.9, color="#000000"];
+
+  "CONFERENCE__a4" [shape=ellipse, label="description", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "CONFERENCE" -- "CONFERENCE__a4" [len=0.9, color="#000000"];
+
+  "CONFERENCE__a5" [shape=ellipse, label="submission_open_at", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "CONFERENCE" -- "CONFERENCE__a5" [len=0.9, color="#000000"];
+
+  "CONFERENCE__a6" [shape=ellipse, label="submission_close_at", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "CONFERENCE" -- "CONFERENCE__a6" [len=0.9, color="#000000"];
+
+  "CONFERENCE__a7" [shape=ellipse, label="review_deadline", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "CONFERENCE" -- "CONFERENCE__a7" [len=0.9, color="#000000"];
+
+  "CONFERENCE__a8" [shape=ellipse, label="status", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "CONFERENCE" -- "CONFERENCE__a8" [len=0.9, color="#000000"];
+
+  "PAPER__a0" [shape=ellipse, label=<<U>paper_id</U>>, fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "PAPER" -- "PAPER__a0" [len=0.9, color="#000000"];
+
+  "PAPER__a1" [shape=ellipse, label="title", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "PAPER" -- "PAPER__a1" [len=0.9, color="#000000"];
+
+  "PAPER__a2" [shape=ellipse, label="abstract", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "PAPER" -- "PAPER__a2" [len=0.9, color="#000000"];
+
+  "PAPER__a3" [shape=ellipse, label="submission_status", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "PAPER" -- "PAPER__a3" [len=0.9, color="#000000"];
+
+  "PAPER__a4" [shape=ellipse, label="submitted_at", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "PAPER" -- "PAPER__a4" [len=0.9, color="#000000"];
+
+  "TOPIC__a0" [shape=ellipse, label=<<U>topic_id</U>>, fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "TOPIC" -- "TOPIC__a0" [len=0.9, color="#000000"];
+
+  "TOPIC__a1" [shape=ellipse, label="topic_name", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "TOPIC" -- "TOPIC__a1" [len=0.9, color="#000000"];
+
+  "TOPIC__a2" [shape=ellipse, label="description", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "TOPIC" -- "TOPIC__a2" [len=0.9, color="#000000"];
+
+  "ASSIGNMENT__a0" [shape=ellipse, label=<<U>assignment_id</U>>, fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "ASSIGNMENT" -- "ASSIGNMENT__a0" [len=0.9, color="#000000"];
+
+  "ASSIGNMENT__a1" [shape=ellipse, label="assignment_status", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "ASSIGNMENT" -- "ASSIGNMENT__a1" [len=0.9, color="#000000"];
+
+  "ASSIGNMENT__a2" [shape=ellipse, label="assigned_at", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "ASSIGNMENT" -- "ASSIGNMENT__a2" [len=0.9, color="#000000"];
+
+  "ASSIGNMENT__a3" [shape=ellipse, label="due_at", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "ASSIGNMENT" -- "ASSIGNMENT__a3" [len=0.9, color="#000000"];
+
+  "REVIEW__a0" [shape=ellipse, label=<<U>review_id</U>>, fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "REVIEW" -- "REVIEW__a0" [len=0.9, color="#000000"];
+
+  "REVIEW__a1" [shape=ellipse, label="overall_score", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "REVIEW" -- "REVIEW__a1" [len=0.9, color="#000000"];
+
+  "REVIEW__a2" [shape=ellipse, label="confidence", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "REVIEW" -- "REVIEW__a2" [len=0.9, color="#000000"];
+
+  "REVIEW__a3" [shape=ellipse, label="recommendation", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "REVIEW" -- "REVIEW__a3" [len=0.9, color="#000000"];
+
+  "REVIEW__a4" [shape=ellipse, label="comments_to_authors", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "REVIEW" -- "REVIEW__a4" [len=0.9, color="#000000"];
+
+  "REVIEW__a5" [shape=ellipse, label="comments_to_chair", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "REVIEW" -- "REVIEW__a5" [len=0.9, color="#000000"];
+
+  "REVIEW__a6" [shape=ellipse, label="review_status", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "REVIEW" -- "REVIEW__a6" [len=0.9, color="#000000"];
+
+  "REVIEW__a7" [shape=ellipse, label="submitted_at", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "REVIEW" -- "REVIEW__a7" [len=0.9, color="#000000"];
+
+  "DECISION__a0" [shape=ellipse, label=<<U>decision_id</U>>, fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "DECISION" -- "DECISION__a0" [len=0.9, color="#000000"];
+
+  "DECISION__a1" [shape=ellipse, label="outcome", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "DECISION" -- "DECISION__a1" [len=0.9, color="#000000"];
+
+  "DECISION__a2" [shape=ellipse, label="rationale", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "DECISION" -- "DECISION__a2" [len=0.9, color="#000000"];
+
+  "DECISION__a3" [shape=ellipse, label="decided_at", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "DECISION" -- "DECISION__a3" [len=0.9, color="#000000"];
+
+  "AUDIT_ENTRY__a0" [shape=ellipse, label=<<U>audit_id</U>>, fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "AUDIT_ENTRY" -- "AUDIT_ENTRY__a0" [len=0.9, color="#000000"];
+
+  "AUDIT_ENTRY__a1" [shape=ellipse, label="table_name", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "AUDIT_ENTRY" -- "AUDIT_ENTRY__a1" [len=0.9, color="#000000"];
+
+  "AUDIT_ENTRY__a2" [shape=ellipse, label="operation", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "AUDIT_ENTRY" -- "AUDIT_ENTRY__a2" [len=0.9, color="#000000"];
+
+  "AUDIT_ENTRY__a3" [shape=ellipse, label="record_pk", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "AUDIT_ENTRY" -- "AUDIT_ENTRY__a3" [len=0.9, color="#000000"];
+
+  "AUDIT_ENTRY__a4" [shape=ellipse, label="old_data", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "AUDIT_ENTRY" -- "AUDIT_ENTRY__a4" [len=0.9, color="#000000"];
+
+  "AUDIT_ENTRY__a5" [shape=ellipse, label="new_data", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "AUDIT_ENTRY" -- "AUDIT_ENTRY__a5" [len=0.9, color="#000000"];
+
+  "AUDIT_ENTRY__a6" [shape=ellipse, label="occurred_at", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "AUDIT_ENTRY" -- "AUDIT_ENTRY__a6" [len=0.9, color="#000000"];
+
+  "AUTHOR__a0" [shape=ellipse, label="profile_status", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "AUTHOR" -- "AUTHOR__a0" [len=0.9, color="#000000"];
+
+  "REVIEWER__a0" [shape=ellipse, label="bio", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "REVIEWER" -- "REVIEWER__a0" [len=0.9, color="#000000"];
+
+  "REVIEWER__a1" [shape=ellipse, label="research_keywords", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "REVIEWER" -- "REVIEWER__a1" [len=0.9, color="#000000"];
+
+  "REVIEWER__a2" [shape=ellipse, label="reviewer_status", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "REVIEWER" -- "REVIEWER__a2" [len=0.9, color="#000000"];
+
+  "PAPER_EMBEDDING__a0" [shape=ellipse, label="embedding", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "PAPER_EMBEDDING" -- "PAPER_EMBEDDING__a0" [len=0.9, color="#000000"];
+
+  "PAPER_EMBEDDING__a1" [shape=ellipse, label="model_name", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "PAPER_EMBEDDING" -- "PAPER_EMBEDDING__a1" [len=0.9, color="#000000"];
+
+  "PAPER_EMBEDDING__a2" [shape=ellipse, label="content_hash", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "PAPER_EMBEDDING" -- "PAPER_EMBEDDING__a2" [len=0.9, color="#000000"];
+
+  "PAPER_EMBEDDING__a3" [shape=ellipse, label="embedded_at", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "PAPER_EMBEDDING" -- "PAPER_EMBEDDING__a3" [len=0.9, color="#000000"];
+
+  "REVIEWER_EMBEDDING__a0" [shape=ellipse, label="embedding", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "REVIEWER_EMBEDDING" -- "REVIEWER_EMBEDDING__a0" [len=0.9, color="#000000"];
+
+  "REVIEWER_EMBEDDING__a1" [shape=ellipse, label="model_name", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "REVIEWER_EMBEDDING" -- "REVIEWER_EMBEDDING__a1" [len=0.9, color="#000000"];
+
+  "REVIEWER_EMBEDDING__a2" [shape=ellipse, label="content_hash", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "REVIEWER_EMBEDDING" -- "REVIEWER_EMBEDDING__a2" [len=0.9, color="#000000"];
+
+  "REVIEWER_EMBEDDING__a3" [shape=ellipse, label="embedded_at", fontsize=9, style=filled, fillcolor="#ffffff", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "REVIEWER_EMBEDDING" -- "REVIEWER_EMBEDDING__a3" [len=0.9, color="#000000"];
+
+  "HAS_LOGIN" [shape=diamond, label="HAS_LOGIN", fontsize=10, style=filled, fillcolor="#ffffff", width=1.9, height=1.0];
+  "PERSON" -- "HAS_LOGIN" [label=" 1 ", color="#000000", len=1.7];
+  "USER_ACCOUNT" -- "HAS_LOGIN" [label=" 1 ", color="#000000:#000000", len=1.7];
+  "WORKS_AT" [shape=diamond, label="WORKS_AT", fontsize=10, style=filled, fillcolor="#ffffff", width=1.9, height=1.0];
+  "PERSON" -- "WORKS_AT" [label=" M ", color="#000000", len=1.7];
+  "AFFILIATION" -- "WORKS_AT" [label=" N ", color="#000000", len=1.7];
+  "WORKS_AT__r0" [shape=ellipse, label="start_date", fontsize=9, style=filled, fillcolor="#f2f2f2", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "WORKS_AT" -- "WORKS_AT__r0" [len=0.9, color="#000000"];
+
+  "WORKS_AT__r1" [shape=ellipse, label="end_date", fontsize=9, style=filled, fillcolor="#f2f2f2", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "WORKS_AT" -- "WORKS_AT__r1" [len=0.9, color="#000000"];
+
+  "SERVES_ON" [shape=diamond, label="SERVES_ON", fontsize=10, style=filled, fillcolor="#ffffff", width=1.9, height=1.0];
+  "PERSON" -- "SERVES_ON" [label=" M ", color="#000000", len=1.7];
+  "CONFERENCE" -- "SERVES_ON" [label=" N ", color="#000000", len=1.7];
+  "SERVES_ON__r0" [shape=ellipse, label="role", fontsize=9, style=filled, fillcolor="#f2f2f2", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "SERVES_ON" -- "SERVES_ON__r0" [len=0.9, color="#000000"];
+
+  "SERVES_ON__r1" [shape=ellipse, label="membership_status", fontsize=9, style=filled, fillcolor="#f2f2f2", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "SERVES_ON" -- "SERVES_ON__r1" [len=0.9, color="#000000"];
+
+  "SERVES_ON__r2" [shape=ellipse, label="joined_at", fontsize=9, style=filled, fillcolor="#f2f2f2", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "SERVES_ON" -- "SERVES_ON__r2" [len=0.9, color="#000000"];
+
+  "SERVES_ON__r3" [shape=ellipse, label="max_active_assignments", fontsize=9, style=filled, fillcolor="#f2f2f2", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "SERVES_ON" -- "SERVES_ON__r3" [len=0.9, color="#000000"];
+
+  "RECEIVES" [shape=diamond, label="RECEIVES", fontsize=10, style=filled, fillcolor="#ffffff", width=1.9, height=1.0];
+  "CONFERENCE" -- "RECEIVES" [label=" 1 ", color="#000000", len=1.7];
+  "PAPER" -- "RECEIVES" [label=" N ", color="#000000:#000000", len=1.7];
+  "SUBMITS" [shape=diamond, label="SUBMITS", fontsize=10, style=filled, fillcolor="#ffffff", width=1.9, height=1.0];
+  "PERSON" -- "SUBMITS" [label=" 1 ", color="#000000", len=1.7];
+  "PAPER" -- "SUBMITS" [label=" N ", color="#000000:#000000", len=1.7];
+  "WRITES" [shape=diamond, label="WRITES", fontsize=10, style=filled, fillcolor="#ffffff", width=1.9, height=1.0];
+  "AUTHOR" -- "WRITES" [label=" M ", color="#000000", len=1.7];
+  "PAPER" -- "WRITES" [label=" N ", color="#000000:#000000", len=1.7];
+  "WRITES__r0" [shape=ellipse, label="author_order", fontsize=9, style=filled, fillcolor="#f2f2f2", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "WRITES" -- "WRITES__r0" [len=0.9, color="#000000"];
+
+  "WRITES__r1" [shape=ellipse, label="is_corresponding", fontsize=9, style=filled, fillcolor="#f2f2f2", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "WRITES" -- "WRITES__r1" [len=0.9, color="#000000"];
+
+  "CLASSIFIED_UNDER" [shape=diamond, label="CLASSIFIED_UNDER", fontsize=10, style=filled, fillcolor="#ffffff", width=1.9, height=1.0];
+  "PAPER" -- "CLASSIFIED_UNDER" [label=" M ", color="#000000", len=1.7];
+  "TOPIC" -- "CLASSIFIED_UNDER" [label=" N ", color="#000000", len=1.7];
+  "EXPERT_IN" [shape=diamond, label="EXPERT_IN", fontsize=10, style=filled, fillcolor="#ffffff", width=1.9, height=1.0];
+  "REVIEWER" -- "EXPERT_IN" [label=" M ", color="#000000", len=1.7];
+  "TOPIC" -- "EXPERT_IN" [label=" N ", color="#000000", len=1.7];
+  "EXPERT_IN__r0" [shape=ellipse, label="expertise_level", fontsize=9, style=filled, fillcolor="#f2f2f2", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "EXPERT_IN" -- "EXPERT_IN__r0" [len=0.9, color="#000000"];
+
+  "EXPERT_IN__r1" [shape=ellipse, label="declared_at", fontsize=9, style=filled, fillcolor="#f2f2f2", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "EXPERT_IN" -- "EXPERT_IN__r1" [len=0.9, color="#000000"];
+
+  "CONFLICTS_WITH" [shape=diamond, label="CONFLICTS_WITH", fontsize=10, style=filled, fillcolor="#ffffff", width=1.9, height=1.0];
+  "PAPER" -- "CONFLICTS_WITH" [label=" M ", color="#000000", len=1.7];
+  "PERSON" -- "CONFLICTS_WITH" [label=" N ", color="#000000", len=1.7];
+  "CONFLICTS_WITH__r0" [shape=ellipse, label="coi_type", fontsize=9, style=filled, fillcolor="#f2f2f2", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "CONFLICTS_WITH" -- "CONFLICTS_WITH__r0" [len=0.9, color="#000000"];
+
+  "CONFLICTS_WITH__r1" [shape=ellipse, label="detection_method", fontsize=9, style=filled, fillcolor="#f2f2f2", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "CONFLICTS_WITH" -- "CONFLICTS_WITH__r1" [len=0.9, color="#000000"];
+
+  "CONFLICTS_WITH__r2" [shape=ellipse, label="detail", fontsize=9, style=filled, fillcolor="#f2f2f2", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "CONFLICTS_WITH" -- "CONFLICTS_WITH__r2" [len=0.9, color="#000000"];
+
+  "CONFLICTS_WITH__r3" [shape=ellipse, label="detected_at", fontsize=9, style=filled, fillcolor="#f2f2f2", color="#000000", width=0.1, height=0.28, margin="0.04,0.02"];
+  "CONFLICTS_WITH" -- "CONFLICTS_WITH__r3" [len=0.9, color="#000000"];
+
+  "ASSIGNED_FOR" [shape=diamond, label="ASSIGNED_FOR", fontsize=10, style=filled, fillcolor="#ffffff", width=1.9, height=1.0];
+  "PAPER" -- "ASSIGNED_FOR" [label=" 1 ", color="#000000", len=1.7];
+  "ASSIGNMENT" -- "ASSIGNED_FOR" [label=" N ", color="#000000:#000000", len=1.7];
+  "CARRIED_BY" [shape=diamond, label="CARRIED_BY", fontsize=10, style=filled, fillcolor="#ffffff", width=1.9, height=1.0];
+  "REVIEWER" -- "CARRIED_BY" [label=" 1 ", color="#000000", len=1.7];
+  "ASSIGNMENT" -- "CARRIED_BY" [label=" N ", color="#000000:#000000", len=1.7];
+  "ALLOCATED_BY" [shape=diamond, label="ALLOCATED_BY", fontsize=10, style=filled, fillcolor="#ffffff", width=1.9, height=1.0];
+  "PERSON" -- "ALLOCATED_BY" [label=" 1 ", color="#000000", len=1.7];
+  "ASSIGNMENT" -- "ALLOCATED_BY" [label=" N ", color="#000000", len=1.7];
+  "PRODUCES" [shape=diamond, label="PRODUCES", fontsize=10, style=filled, fillcolor="#ffffff", width=1.9, height=1.0];
+  "ASSIGNMENT" -- "PRODUCES" [label=" 1 ", color="#000000", len=1.7];
+  "REVIEW" -- "PRODUCES" [label=" 1 ", color="#000000:#000000", len=1.7];
+  "VERDICT_ON" [shape=diamond, label="VERDICT_ON", fontsize=10, style=filled, fillcolor="#ffffff", width=1.9, height=1.0];
+  "PAPER" -- "VERDICT_ON" [label=" 1 ", color="#000000", len=1.7];
+  "DECISION" -- "VERDICT_ON" [label=" 1 ", color="#000000:#000000", len=1.7];
+  "DECIDED_BY" [shape=diamond, label="DECIDED_BY", fontsize=10, style=filled, fillcolor="#ffffff", width=1.9, height=1.0];
+  "PERSON" -- "DECIDED_BY" [label=" 1 ", color="#000000", len=1.7];
+  "DECISION" -- "DECIDED_BY" [label=" N ", color="#000000:#000000", len=1.7];
+  "ACTED_IN" [shape=diamond, label="ACTED_IN", fontsize=10, style=filled, fillcolor="#ffffff", width=1.9, height=1.0];
+  "PERSON" -- "ACTED_IN" [label=" 1 ", color="#000000", len=1.7];
+  "AUDIT_ENTRY" -- "ACTED_IN" [label=" N ", color="#000000", len=1.7];
+  "EMBEDS" [shape=diamond, peripheries=2, label="EMBEDS", fontsize=10, style=filled, fillcolor="#ffffff", width=2.0, height=1.05];
+  "PAPER" -- "EMBEDS" [label=" 1 ", color="#000000:#000000", len=1.6];
+  "EMBEDS" -- "PAPER_EMBEDDING" [label=" 1 ", color="#000000:#000000", len=1.6];
+  "EMBEDS_REVIEWER" [shape=diamond, peripheries=2, label="EMBEDS_REVIEWER", fontsize=10, style=filled, fillcolor="#ffffff", width=2.0, height=1.05];
+  "REVIEWER" -- "EMBEDS_REVIEWER" [label=" 1 ", color="#000000:#000000", len=1.6];
+  "EMBEDS_REVIEWER" -- "REVIEWER_EMBEDDING" [label=" 1 ", color="#000000:#000000", len=1.6];
+  "ISA" [shape=triangle, label="o", fontsize=11, style=filled, fillcolor="#ffffff", width=1.0, height=0.8];
+  "PERSON" -- "ISA" [len=1.4, color="#000000"];
+  "ISA" -- "AUTHOR" [len=1.4, color="#000000"];
+  "ISA" -- "REVIEWER" [len=1.4, color="#000000"];
+}

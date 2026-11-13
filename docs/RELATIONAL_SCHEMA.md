@@ -5,14 +5,84 @@ scripts in `db/`. Every column, key, constraint and index below was read
 from `pg_catalog`, not transcribed from the DDL, so this document cannot
 drift from the schema it describes.
 
-**Tables:** 20 &nbsp;&nbsp; **Foreign keys:** 26 &nbsp;&nbsp; **Check constraints:** 25 &nbsp;&nbsp; **Indexes:** 49
+**Relations:** 20 &nbsp;&nbsp; **Foreign keys:** 26 &nbsp;&nbsp; **Check constraints:** 25 &nbsp;&nbsp; **Indexes:** 49
 
 ---
 
-## 1. Relational Schema (notation)
+## 1. Two Models, Two Diagrams
 
-Primary key attributes are **bold**. Foreign keys are marked with the
-relation they reference.
+The project carries two separate design artifacts, and they are not
+interchangeable.
+
+| | Conceptual | Logical |
+| :--- | :--- | :--- |
+| Artifact | `docs/er_diagram.png` | `docs/relational_schema.png` |
+| Notation | Chen: rectangles, diamonds, ovals | Elmasri: one box of attribute cells per relation |
+| Shows | entity types, relationship types, cardinality ratios, participation | relations, attributes, primary keys, referential arrows |
+| Link tables | absorbed into M:N relationship diamonds | present as relations in their own right |
+| Built by | `db/tools/generate_er_diagram.py` | `db/tools/generate_schema_docs.py` |
+
+The ER diagram is the design. This document and the relational schema
+diagram are what that design became once it was mapped onto tables.
+
+### Mapping rules applied
+
+The conceptual model was mapped to these relations by the standard
+ER-to-relational rules:
+
+1. **Strong entity type** &rarr; a relation with the entity's own key as
+   primary key. `PERSON` &rarr; `PEOPLE`, `PAPER` &rarr; `PAPERS`.
+2. **Weak entity type** &rarr; a relation whose primary key is the owner's
+   key. `PAPER_EMBEDDING` &rarr; `PAPER_EMBEDDINGS(paper_id)`.
+3. **Specialization** &rarr; one relation per subclass, primary key
+   inherited from the superclass and also a foreign key to it.
+   `AUTHOR` &rarr; `AUTHOR_PROFILES(person_id)`,
+   `REVIEWER` &rarr; `REVIEWER_PROFILES(person_id)`.
+4. **1:N relationship** &rarr; a foreign key on the N side.
+   `RECEIVES` &rarr; `PAPERS.conference_id`.
+5. **1:1 relationship** &rarr; a foreign key on the side with total
+   participation, declared `UNIQUE`. `PRODUCES` &rarr;
+   `REVIEWS.assignment_id UNIQUE`, `VERDICT_ON` &rarr;
+   `DECISIONS.paper_id UNIQUE`.
+6. **M:N relationship** &rarr; a new relation whose primary key is the
+   pair of participating keys, carrying any relationship attributes.
+   `WORKS_AT` &rarr; `PERSON_AFFILIATIONS`, `WRITES` &rarr;
+   `PAPER_AUTHORS`, `CLASSIFIED_UNDER` &rarr; `PAPER_TOPICS`,
+   `EXPERT_IN` &rarr; `REVIEWER_TOPICS`, `SERVES_ON` &rarr;
+   `CONFERENCE_MEMBERSHIPS`, `CONFLICTS_WITH` &rarr;
+   `CONFLICTS_OF_INTEREST`.
+7. **Multivalued attribute** &rarr; none in this model; the only
+   repeating groups are the M:N relations above.
+
+### Two deliberate divergences
+
+Two places where the physical schema does not mirror the conceptual model
+exactly. Both are intentional and both are recorded here rather than
+hidden:
+
+- `ASSIGNMENT` is drawn as an **associative entity**, not a relationship
+  diamond. Conceptually it is the M:N relationship between `PAPER` and
+  `REVIEWER`, but `REVIEW` is related to it through `PRODUCES`, and Chen
+  notation does not let a relationship participate in another
+  relationship. Promoting it to an entity is the standard resolution, and
+  it therefore keeps its own surrogate key,
+  `review_assignments.assignment_id`, rather than the composite
+  `(paper_id, reviewer_person_id)` that rule 6 would otherwise give it.
+
+- `WRITES` connects `AUTHOR` to `PAPER` and `CARRIED_BY` connects
+  `REVIEWER` to `ASSIGNMENT` conceptually, but the foreign keys
+  `paper_authors.author_person_id` and
+  `review_assignments.reviewer_person_id` reference `PEOPLE`, not the
+  profile relations. This keeps referential integrity intact if a
+  profile row is ever removed, and the subclass constraint is enforced
+  in the triggers in `09_review_features.sql` instead.
+
+---
+
+## 2. Relational Schema
+
+Primary key attributes are **bold**. Each relation is followed by its
+foreign keys and the primary key attribute each one references.
 
 ### Core Platform / Identity
 
@@ -106,7 +176,7 @@ relation they reference.
 
 ---
 
-## 2. Data Dictionary
+## 3. Data Dictionary
 
 ### Core Platform / Identity
 
@@ -413,7 +483,7 @@ Check constraints:
 
 ---
 
-## 3. Referential Integrity Summary
+## 4. Referential Integrity Summary
 
 | Child | Column(s) | Parent | ON DELETE | ON UPDATE |
 | :--- | :--- | :--- | :--- | :--- |
@@ -446,7 +516,7 @@ Check constraints:
 
 ---
 
-## 4. Indexes
+## 5. Indexes
 
 | Table | Index | Definition |
 | :--- | :--- | :--- |
