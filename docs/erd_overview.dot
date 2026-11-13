@@ -1,0 +1,67 @@
+digraph scholarly {
+  graph [rankdir=LR, splines=spline, overlap=false, nodesep=0.45, ranksep=1.5, fontname="Helvetica", labelloc="t", fontsize=22,  label="Scholarly  -  Entity Relationships  (20 tables, 26 foreign keys)\n "];
+  node [shape=plaintext, fontname="Helvetica", fontsize=11];
+  edge [fontname="Helvetica", fontsize=9, color="#000000", labeldistance=1.8, labelangle=20];
+  subgraph cluster_0 {
+    label="Core Platform / Identity"; fontsize=15; fontcolor="#000000";
+    style="dashed"; color="#000000"; penwidth=1.1; margin=18;
+    "people" [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4"><TR><TD COLSPAN="3" BGCOLOR="#d9d9d9"><B>PEOPLE</B></TD></TR></TABLE>>];
+    "user_accounts" [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4"><TR><TD COLSPAN="3" BGCOLOR="#d9d9d9"><B>USER_ACCOUNTS</B></TD></TR></TABLE>>];
+    "author_profiles" [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4"><TR><TD COLSPAN="3" BGCOLOR="#d9d9d9"><B>AUTHOR_PROFILES</B></TD></TR></TABLE>>];
+    "reviewer_profiles" [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4"><TR><TD COLSPAN="3" BGCOLOR="#d9d9d9"><B>REVIEWER_PROFILES</B></TD></TR></TABLE>>];
+    "affiliations" [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4"><TR><TD COLSPAN="3" BGCOLOR="#d9d9d9"><B>AFFILIATIONS</B></TD></TR></TABLE>>];
+    "person_affiliations" [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4"><TR><TD COLSPAN="3" BGCOLOR="#d9d9d9"><B>PERSON_AFFILIATIONS</B></TD></TR></TABLE>>];
+  }
+  subgraph cluster_1 {
+    label="Core Platform / Conferences &amp; Submissions"; fontsize=15; fontcolor="#000000";
+    style="dashed"; color="#000000"; penwidth=1.1; margin=18;
+    "conferences" [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4"><TR><TD COLSPAN="3" BGCOLOR="#d9d9d9"><B>CONFERENCES</B></TD></TR></TABLE>>];
+    "conference_memberships" [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4"><TR><TD COLSPAN="3" BGCOLOR="#d9d9d9"><B>CONFERENCE_MEMBERSHIPS</B></TD></TR></TABLE>>];
+    "papers" [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4"><TR><TD COLSPAN="3" BGCOLOR="#d9d9d9"><B>PAPERS</B></TD></TR></TABLE>>];
+    "paper_authors" [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4"><TR><TD COLSPAN="3" BGCOLOR="#d9d9d9"><B>PAPER_AUTHORS</B></TD></TR></TABLE>>];
+    "topics" [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4"><TR><TD COLSPAN="3" BGCOLOR="#d9d9d9"><B>TOPICS</B></TD></TR></TABLE>>];
+    "paper_topics" [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4"><TR><TD COLSPAN="3" BGCOLOR="#d9d9d9"><B>PAPER_TOPICS</B></TD></TR></TABLE>>];
+  }
+  subgraph cluster_2 {
+    label="Review &amp; Evaluation"; fontsize=15; fontcolor="#000000";
+    style="dashed"; color="#000000"; penwidth=1.1; margin=18;
+    "reviewer_topics" [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4"><TR><TD COLSPAN="3" BGCOLOR="#d9d9d9"><B>REVIEWER_TOPICS</B></TD></TR></TABLE>>];
+    "conflicts_of_interest" [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4"><TR><TD COLSPAN="3" BGCOLOR="#d9d9d9"><B>CONFLICTS_OF_INTEREST</B></TD></TR></TABLE>>];
+    "review_assignments" [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4"><TR><TD COLSPAN="3" BGCOLOR="#d9d9d9"><B>REVIEW_ASSIGNMENTS</B></TD></TR></TABLE>>];
+    "reviews" [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4"><TR><TD COLSPAN="3" BGCOLOR="#d9d9d9"><B>REVIEWS</B></TD></TR></TABLE>>];
+    "decisions" [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4"><TR><TD COLSPAN="3" BGCOLOR="#d9d9d9"><B>DECISIONS</B></TD></TR></TABLE>>];
+    "audit_log" [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4"><TR><TD COLSPAN="3" BGCOLOR="#d9d9d9"><B>AUDIT_LOG</B></TD></TR></TABLE>>];
+  }
+  subgraph cluster_3 {
+    label="Vector Search"; fontsize=15; fontcolor="#000000";
+    style="dashed"; color="#000000"; penwidth=1.1; margin=18;
+    "paper_embeddings" [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4"><TR><TD COLSPAN="3" BGCOLOR="#d9d9d9"><B>PAPER_EMBEDDINGS</B></TD></TR></TABLE>>];
+    "reviewer_embeddings" [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4"><TR><TD COLSPAN="3" BGCOLOR="#d9d9d9"><B>REVIEWER_EMBEDDINGS</B></TD></TR></TABLE>>];
+  }
+  "people" -> "audit_log" [dir=both, arrowtail=teeodot, arrowhead=crowodot, style=dashed, xlabel="acted as"];
+  "people" -> "author_profiles" [dir=both, arrowtail=teetee, arrowhead=teeodot, style=solid, xlabel="is an author"];
+  "conferences" -> "conference_memberships" [dir=both, arrowtail=teetee, arrowhead=crowodot, style=solid, xlabel="has committee"];
+  "people" -> "conference_memberships" [dir=both, arrowtail=teetee, arrowhead=crowodot, style=solid, xlabel="serves on"];
+  "papers" -> "conflicts_of_interest" [dir=both, arrowtail=teetee, arrowhead=crowodot, style=solid, xlabel="has conflict"];
+  "people" -> "conflicts_of_interest" [dir=both, arrowtail=teetee, arrowhead=crowodot, style=solid, xlabel="conflicted on"];
+  "people" -> "decisions" [dir=both, arrowtail=teetee, arrowhead=crowodot, style=solid, xlabel="decides"];
+  "papers" -> "decisions" [dir=both, arrowtail=teetee, arrowhead=teeodot, style=solid, xlabel="receives verdict"];
+  "people" -> "paper_authors" [dir=both, arrowtail=teetee, arrowhead=crowodot, style=solid, xlabel="authors"];
+  "papers" -> "paper_authors" [dir=both, arrowtail=teetee, arrowhead=crowodot, style=solid, xlabel="written by"];
+  "papers" -> "paper_embeddings" [dir=both, arrowtail=teetee, arrowhead=teeodot, style=solid, xlabel="embedded as"];
+  "papers" -> "paper_topics" [dir=both, arrowtail=teetee, arrowhead=crowodot, style=solid, xlabel="tagged with"];
+  "topics" -> "paper_topics" [dir=both, arrowtail=teetee, arrowhead=crowodot, style=solid, xlabel="categorises"];
+  "conferences" -> "papers" [dir=both, arrowtail=teetee, arrowhead=crowodot, style=solid, xlabel="receives"];
+  "people" -> "papers" [dir=both, arrowtail=teetee, arrowhead=crowodot, style=solid, xlabel="submits"];
+  "affiliations" -> "person_affiliations" [dir=both, arrowtail=teetee, arrowhead=crowodot, style=solid, xlabel="employs"];
+  "people" -> "person_affiliations" [dir=both, arrowtail=teetee, arrowhead=crowodot, style=solid, xlabel="affiliated with"];
+  "people" -> "review_assignments" [dir=both, arrowtail=teeodot, arrowhead=crowodot, style=dashed, xlabel="allocated by"];
+  "papers" -> "review_assignments" [dir=both, arrowtail=teetee, arrowhead=crowodot, style=solid, xlabel="assigned for review"];
+  "people" -> "review_assignments" [dir=both, arrowtail=teetee, arrowhead=crowodot, style=solid, xlabel="reviews"];
+  "reviewer_profiles" -> "reviewer_embeddings" [dir=both, arrowtail=teetee, arrowhead=teeodot, style=solid, xlabel="embedded as"];
+  "people" -> "reviewer_profiles" [dir=both, arrowtail=teetee, arrowhead=teeodot, style=solid, xlabel="is a reviewer"];
+  "reviewer_profiles" -> "reviewer_topics" [dir=both, arrowtail=teetee, arrowhead=crowodot, style=solid, xlabel="declares expertise in"];
+  "topics" -> "reviewer_topics" [dir=both, arrowtail=teetee, arrowhead=crowodot, style=solid, xlabel="claimed by"];
+  "review_assignments" -> "reviews" [dir=both, arrowtail=teetee, arrowhead=teeodot, style=solid, xlabel="produces"];
+  "people" -> "user_accounts" [dir=both, arrowtail=teetee, arrowhead=teeodot, style=solid, xlabel="signs in as"];
+}
