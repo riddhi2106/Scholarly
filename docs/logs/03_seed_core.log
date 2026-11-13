@@ -1,0 +1,50 @@
+============================================================================
+Scholarly - Core Platform seed data (DML)
+Database   : demo
+PostgreSQL : 16.15(Ubuntu16.15-0ubuntu0.24.04.1)
+Captured   : 2026-11-13 04:23:56 UTC
+Command    : psql -d demo -f db/seeds/03_seed_data.sql
+============================================================================
+
+INSERT 0 6
+ setval 
+--------
+      6
+(1 row)
+
+INSERT 0 8
+ setval 
+--------
+      8
+(1 row)
+
+INSERT 0 6
+ setval 
+--------
+      6
+(1 row)
+
+INSERT 0 5
+INSERT 0 4
+INSERT 0 6
+INSERT 0 3
+ setval 
+--------
+      3
+(1 row)
+
+INSERT 0 6
+INSERT 0 6
+ setval 
+--------
+      6
+(1 row)
+
+INSERT 0 2
+ setval 
+--------
+      2
+(1 row)
+
+INSERT 0 5
+INSERT 0 4

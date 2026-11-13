@@ -1,0 +1,161 @@
+============================================================================
+Scholarly - Review pipeline analytical queries
+Database   : demo
+PostgreSQL : 16.15(Ubuntu16.15-0ubuntu0.24.04.1)
+Captured   : 2026-11-13 04:24:04 UTC
+Command    : psql -d demo -f db/queries/11_review_analytics.sql
+============================================================================
+
+
+=== Q1. Papers with the widest reviewer disagreement ===
+ paper_id |                      title                       | reviews | min_score | max_score | spread | mean_score | stddev 
+----------+--------------------------------------------------+---------+-----------+-----------+--------+------------+--------
+     1174 | Learned Replication for Edge Deployments         |       2 |         1 |        10 |      9 |       5.50 |   6.36
+     1184 | Learned Replication for Cloud-Native Warehouses  |       2 |         1 |        10 |      9 |       5.50 |   6.36
+     1166 | Incremental Recovery for Edge Deployments        |       3 |         1 |        10 |      9 |       5.33 |   4.51
+     1176 | Incremental Recovery for Cloud-Native Warehouses |       3 |         1 |        10 |      9 |       5.33 |   4.51
+     1161 | Scalable Checkpointing for HTAP Systems          |       3 |         1 |         8 |      7 |       5.67 |   4.04
+     1051 | Scalable Checkpointing for Serverless Runtimes   |       3 |         1 |         8 |      7 |       5.67 |   4.04
+     1061 | Scalable Checkpointing for Streaming Workloads   |       3 |         1 |         8 |      7 |       4.67 |   3.51
+     1056 | Incremental Recovery for Cloud-Native Warehouses |       3 |         1 |         8 |      7 |       4.67 |   3.51
+     1066 | Incremental Recovery for Multi-Tenant Databases  |       3 |         1 |         8 |      7 |       4.67 |   3.51
+     1011 | Scalable Checkpointing for Serverless Runtimes   |       3 |         1 |         8 |      7 |       4.67 |   3.51
+     1026 | Incremental Recovery for Multi-Tenant Databases  |       3 |         1 |         8 |      7 |       4.67 |   3.51
+     1006 | Incremental Recovery for Edge Deployments        |       3 |         1 |         8 |      7 |       4.67 |   3.51
+     1031 | Scalable Checkpointing for Graph Analytics       |       3 |         1 |         8 |      7 |       4.67 |   3.51
+     1016 | Incremental Recovery for Cloud-Native Warehouses |       3 |         1 |         8 |      7 |       4.67 |   3.51
+     1021 | Scalable Checkpointing for Streaming Workloads   |       3 |         1 |         8 |      7 |       4.67 |   3.51
+(15 rows)
+
+
+=== Q2. Reviewer scoring bias (deviation from co-reviewers) ===
+ reviewer_person_id |      full_name       | reviews_written | own_mean | co_reviewer_mean | bias  |    assessment    
+--------------------+----------------------+-----------------+----------+------------------+-------+------------------
+                101 | Marcus Rossi (R1)    |               5 |     1.80 |             6.80 | -5.00 | markedly harsh
+                102 | Yuki Noor (R2)       |               9 |     8.78 |             4.83 |  3.94 | markedly lenient
+                135 | Nikhil Iyer (R35)    |               5 |     8.20 |             4.90 |  3.30 | markedly lenient
+                143 | Lena Weber (R43)     |              11 |     4.36 |             7.18 | -2.82 | markedly harsh
+                146 | Tomas Tanaka (R46)   |               9 |     7.22 |             5.11 |  2.11 | markedly lenient
+                107 | Sofia Menon (R7)     |               6 |     5.17 |             7.17 | -2.00 | markedly harsh
+                120 | Aditi Shah (R20)     |               4 |     5.50 |             7.50 | -2.00 | markedly harsh
+                119 | Luca Bergmann (R19)  |              10 |     4.30 |             6.20 | -1.90 | harsh
+                113 | Jonas Alvarez (R13)  |               7 |     4.86 |             6.71 | -1.86 | harsh
+                104 | Omar Liu (R4)        |              12 |     7.08 |             5.58 |  1.50 | lenient
+                134 | Fatima Petrova (R34) |               9 |     7.67 |             6.17 |  1.50 | lenient
+                103 | Lena Weber (R3)      |              11 |     7.36 |             5.86 |  1.50 | lenient
+(12 rows)
+
+
+=== Q3. Papers with no conflict-free topic expert ===
+ paper_id | title | topics | conflicts 
+----------+-------+--------+-----------
+(0 rows)
+
+(An empty result means every paper could be staffed with a subject expert.)
+
+=== Q4. Conflicts of interest by type and detection method ===
+ conference |      coi_type      | detection_method | conflicts | papers_affected | reviewers_affected 
+------------+--------------------+------------------+-----------+-----------------+--------------------
+ ICDMS      | shared_affiliation | automatic        |      1756 |             200 |                 50
+ ICDMS      | co_authorship      | automatic        |       593 |             185 |                  8
+ ICDMS      | self_authorship    | automatic        |       524 |             200 |                 48
+(3 rows)
+
+
+=== Q5. Reviewer workload against declared cap ===
+ person_id |       reviewer       | cap | assigned | submitted | pct_of_cap 
+-----------+----------------------+-----+----------+-----------+------------
+       102 | Yuki Noor (R2)       |  15 |       15 |         9 |        100
+       109 | Ravi Novak (R9)      |  15 |       15 |        11 |        100
+       111 | Diego Karim (R11)    |  15 |       15 |        11 |        100
+       112 | Mei Farouk (R12)     |  15 |       15 |         9 |        100
+       114 | Fatima Petrova (R14) |  15 |       15 |        13 |        100
+       115 | Nikhil Iyer (R15)    |  15 |       15 |        14 |        100
+       116 | Clara Zhang (R16)    |  15 |       15 |        14 |        100
+       118 | Anya Horvath (R18)   |  15 |       15 |        14 |        100
+       121 | Marcus Rossi (R21)   |  15 |       15 |        12 |        100
+       124 | Omar Liu (R24)       |  15 |       15 |        12 |        100
+       126 | Tomas Tanaka (R26)   |  15 |       15 |        12 |        100
+       127 | Sofia Menon (R27)    |  15 |       15 |        13 |        100
+       128 | Chen Dubois (R28)    |  15 |       15 |         9 |        100
+       129 | Ravi Novak (R29)     |  15 |       15 |        11 |        100
+       136 | Clara Zhang (R36)    |  15 |       15 |        12 |        100
+(15 rows)
+
+
+=== Q6. Topics where committee expertise is thin ===
+ topic_id |            topic_name             | submissions | qualified_reviewers | papers_per_reviewer 
+----------+-----------------------------------+-------------+---------------------+---------------------
+        8 | Storage Engines & Indexing        |          23 |                   4 |                 5.8
+       13 | Data Integration & Cleaning       |          21 |                   4 |                 5.3
+        3 | Vector Indexing & Semantic Search |          25 |                   5 |                 5.0
+       10 | Data Privacy & Security           |          23 |                   5 |                 4.6
+       11 | Machine Learning for Systems      |          22 |                   6 |                 3.7
+        6 | Graph Data Management             |          32 |                  10 |                 3.2
+        9 | Stream Processing                 |          27 |                   9 |                 3.0
+        7 | Query Optimization                |          24 |                   8 |                 3.0
+        2 | Transaction Processing & MVCC     |          21 |                   7 |                 3.0
+        4 | Full-Text Retrieval               |          18 |                   7 |                 2.6
+       17 | Hardware-Accelerated Databases    |          24 |                  10 |                 2.4
+       15 | Distributed Consensus             |          21 |                   9 |                 2.3
+(12 rows)
+
+
+=== Q7. Assignments where the reviewer declared none of the paper topics ===
+ off_topic_assignments | pct_of_all_assignments 
+-----------------------+------------------------
+                    20 |                    3.3
+(1 row)
+
+
+=== Q8. Decision outcome distribution vs mean review score ===
+    outcome     | papers | avg_of_mean_scores | lowest | highest | strong_papers | weak_papers 
+----------------+--------+--------------------+--------+---------+---------------+-------------
+ accept         |     26 |               7.75 |   7.00 |    8.50 |            26 |           0
+ minor_revision |     29 |               5.80 |   5.50 |    6.50 |             0 |           0
+ major_revision |     11 |               4.73 |   4.67 |    5.33 |             0 |           0
+ reject         |      1 |               3.00 |   3.00 |    3.00 |             0 |           1
+(4 rows)
+
+
+=== Q9. Full-text search: submissions about replication or consensus ===
+ paper_id |                      title                      |  rank  
+----------+-------------------------------------------------+--------
+     1004 | Learned Replication for Vector Search Engines   | 0.0304
+     1014 | Learned Replication for Edge Deployments        | 0.0304
+     1024 | Learned Replication for Cloud-Native Warehouses | 0.0304
+     1034 | Learned Replication for Multi-Tenant Databases  | 0.0304
+     1044 | Learned Replication for Vector Search Engines   | 0.0304
+     1054 | Learned Replication for Edge Deployments        | 0.0304
+     1064 | Learned Replication for Cloud-Native Warehouses | 0.0304
+     1074 | Learned Replication for Multi-Tenant Databases  | 0.0304
+     1084 | Learned Replication for Vector Search Engines   | 0.0304
+     1094 | Learned Replication for Edge Deployments        | 0.0304
+(10 rows)
+
+
+=== Q10. Audit trail summary ===
+     table_name     | operation | events |           first_event            |            last_event            
+--------------------+-----------+--------+----------------------------------+----------------------------------
+ decisions          | INSERT    |     67 | 2026-11-13 09:54:04.538253+05:30 | 2026-11-13 09:54:04.538253+05:30
+ review_assignments | INSERT    |    600 | 2026-11-13 09:53:57.701418+05:30 | 2026-11-13 09:53:57.701418+05:30
+ review_assignments | UPDATE    |    480 | 2026-11-13 09:54:04.48343+05:30  | 2026-11-13 09:54:04.48343+05:30
+ reviews            | INSERT    |    480 | 2026-11-13 09:54:04.48343+05:30  | 2026-11-13 09:54:04.48343+05:30
+(4 rows)
+
+
+=== Q10b. Most recent assignment status changes ===
+ audit_id | assignment_id | old_status | new_status |           occurred_at           
+----------+---------------+------------+------------+---------------------------------
+     1560 | 599           | pending    | completed  | 2026-11-13 09:54:04.48343+05:30
+     1558 | 598           | pending    | completed  | 2026-11-13 09:54:04.48343+05:30
+     1556 | 597           | pending    | completed  | 2026-11-13 09:54:04.48343+05:30
+     1554 | 596           | pending    | completed  | 2026-11-13 09:54:04.48343+05:30
+     1552 | 594           | pending    | completed  | 2026-11-13 09:54:04.48343+05:30
+     1550 | 593           | pending    | completed  | 2026-11-13 09:54:04.48343+05:30
+     1548 | 592           | pending    | completed  | 2026-11-13 09:54:04.48343+05:30
+     1546 | 591           | pending    | completed  | 2026-11-13 09:54:04.48343+05:30
+     1544 | 589           | pending    | completed  | 2026-11-13 09:54:04.48343+05:30
+     1542 | 588           | pending    | completed  | 2026-11-13 09:54:04.48343+05:30
+(10 rows)
+

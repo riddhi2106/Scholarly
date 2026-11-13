@@ -1,0 +1,40 @@
+============================================================================
+Scholarly - Review pipeline constraint tests
+Database   : demo
+PostgreSQL : 16.15(Ubuntu16.15-0ubuntu0.24.04.1)
+Captured   : 2026-11-13 04:24:04 UTC
+Command    : psql -d demo -f db/tests/12_review_constraint_tests.sql
+============================================================================
+
+psql:db/tests/12_review_constraint_tests.sql:48: NOTICE:  TEST 1 PASSED: self-authorship conflict blocked (Conflict of interest: reviewer 101 cannot be assigned to paper 1047 (co_authorship, self_authorship)).
+DO
+psql:db/tests/12_review_constraint_tests.sql:84: NOTICE:  TEST 2 PASSED: co-authorship conflict blocked.
+DO
+psql:db/tests/12_review_constraint_tests.sql:119: NOTICE:  TEST 3 PASSED: shared-affiliation conflict blocked.
+DO
+psql:db/tests/12_review_constraint_tests.sql:196: NOTICE:  TEST 4 PASSED: workload cap enforced at 3 active assignments (Reviewer workload exceeded: reviewer 101 already holds 3 of 3 permitted active assignments on conference 4).
+DO
+psql:db/tests/12_review_constraint_tests.sql:229: NOTICE:  TEST 5 PASSED: non-reviewer assignment blocked.
+DO
+psql:db/tests/12_review_constraint_tests.sql:257: NOTICE:  TEST 6 PASSED: duplicate reviewer assignment rejected.
+DO
+psql:db/tests/12_review_constraint_tests.sql:277: NOTICE:  TEST 7 PASSED: one review per assignment enforced.
+DO
+psql:db/tests/12_review_constraint_tests.sql:297: NOTICE:  TEST 8 PASSED: one decision per paper enforced.
+DO
+psql:db/tests/12_review_constraint_tests.sql:319: NOTICE:  TEST 9 PASSED: out-of-range review score rejected.
+DO
+psql:db/tests/12_review_constraint_tests.sql:341: NOTICE:  TEST 10 PASSED: invalid recommendation rejected.
+DO
+psql:db/tests/12_review_constraint_tests.sql:358: NOTICE:  TEST 11 PASSED: out-of-range expertise level rejected.
+DO
+psql:db/tests/12_review_constraint_tests.sql:383: NOTICE:  TEST 12 PASSED: author view exposes no reviewer identity or chair comments.
+DO
+psql:db/tests/12_review_constraint_tests.sql:405: NOTICE:  TEST 13 PASSED: reviewer view exposes no author identity.
+DO
+psql:db/tests/12_review_constraint_tests.sql:441: NOTICE:  TEST 14 PASSED: audit row written (480 -> 481 rows).
+DO
+psql:db/tests/12_review_constraint_tests.sql:477: NOTICE:  TEST 15 PASSED: paper delete cascaded without tripping the COI trigger.
+DO
+
+Review pipeline constraint tests complete.

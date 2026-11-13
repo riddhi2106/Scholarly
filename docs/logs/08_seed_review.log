@@ -1,0 +1,79 @@
+============================================================================
+Scholarly - Review pipeline synthetic dataset (200 papers, 50 reviewers)
+Database   : demo
+PostgreSQL : 16.15(Ubuntu16.15-0ubuntu0.24.04.1)
+Captured   : 2026-11-13 04:23:57 UTC
+Command    : psql -d demo -f db/seeds/10_review_seed_data.sql
+============================================================================
+
+ setseed 
+---------
+ 
+(1 row)
+
+DELETE 0
+DELETE 0
+INSERT 0 1
+ setval 
+--------
+      4
+(1 row)
+
+INSERT 0 8
+ setval 
+--------
+     14
+(1 row)
+
+INSERT 0 12
+ setval 
+--------
+     18
+(1 row)
+
+INSERT 0 50
+INSERT 0 40
+ setval 
+--------
+    240
+(1 row)
+
+INSERT 0 50
+INSERT 0 40
+INSERT 0 50
+INSERT 0 50
+INSERT 0 40
+INSERT 0 150
+INSERT 0 50
+INSERT 0 1
+INSERT 0 200
+ setval 
+--------
+   1200
+(1 row)
+
+ALTER TABLE
+INSERT 0 500
+DO
+ALTER TABLE
+INSERT 0 401
+UPDATE 1
+psql:db/seeds/10_review_seed_data.sql:343: NOTICE:  Conflict detection complete: 2873 conflict rows recorded across 200 papers.
+DO
+psql:db/seeds/10_review_seed_data.sql:373: NOTICE:  Assignment complete: 600 assignments placed; 0 papers received fewer than 3 reviewers.
+DO
+INSERT 0 480
+INSERT 0 67
+    entity     | count 
+---------------+-------
+ reviewers     |    50
+ authors       |    40
+ papers        |   200
+ paper_authors |   524
+ conflicts     |  2873
+ assignments   |   600
+ reviews       |   480
+ decisions     |    67
+ audit_rows    |  1627
+(9 rows)
+

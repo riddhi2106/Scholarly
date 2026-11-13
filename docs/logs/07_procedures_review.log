@@ -1,0 +1,52 @@
+============================================================================
+Scholarly - Review pipeline triggers, procedures and views
+Database   : demo
+PostgreSQL : 16.15(Ubuntu16.15-0ubuntu0.24.04.1)
+Captured   : 2026-11-13 04:23:57 UTC
+Command    : psql -d demo -f db/procedures/09_review_features.sql
+============================================================================
+
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+psql:db/procedures/09_review_features.sql:205: NOTICE:  trigger "trg_paper_authors_refresh_coi" for relation "paper_authors" does not exist, skipping
+DROP TRIGGER
+CREATE TRIGGER
+CREATE FUNCTION
+psql:db/procedures/09_review_features.sql:243: NOTICE:  trigger "trg_assignment_block_coi" for relation "review_assignments" does not exist, skipping
+DROP TRIGGER
+CREATE TRIGGER
+CREATE FUNCTION
+psql:db/procedures/09_review_features.sql:320: NOTICE:  trigger "trg_assignment_enforce_load" for relation "review_assignments" does not exist, skipping
+DROP TRIGGER
+CREATE TRIGGER
+CREATE FUNCTION
+CREATE PROCEDURE
+CREATE FUNCTION
+psql:db/procedures/09_review_features.sql:508: NOTICE:  trigger "trg_decision_apply" for relation "decisions" does not exist, skipping
+DROP TRIGGER
+CREATE TRIGGER
+CREATE FUNCTION
+psql:db/procedures/09_review_features.sql:532: NOTICE:  trigger "trg_review_complete_assignment" for relation "reviews" does not exist, skipping
+DROP TRIGGER
+CREATE TRIGGER
+CREATE FUNCTION
+psql:db/procedures/09_review_features.sql:550: NOTICE:  trigger "trg_reviews_updated_at" for relation "reviews" does not exist, skipping
+DROP TRIGGER
+CREATE TRIGGER
+CREATE FUNCTION
+psql:db/procedures/09_review_features.sql:602: NOTICE:  trigger "trg_audit_assignments" for relation "review_assignments" does not exist, skipping
+DROP TRIGGER
+CREATE TRIGGER
+psql:db/procedures/09_review_features.sql:608: NOTICE:  trigger "trg_audit_reviews" for relation "reviews" does not exist, skipping
+DROP TRIGGER
+CREATE TRIGGER
+psql:db/procedures/09_review_features.sql:614: NOTICE:  trigger "trg_audit_decisions" for relation "decisions" does not exist, skipping
+DROP TRIGGER
+CREATE TRIGGER
+CREATE VIEW
+COMMENT
+CREATE VIEW
+COMMENT
+CREATE VIEW
+COMMENT

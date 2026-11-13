@@ -1,0 +1,41 @@
+============================================================================
+Scholarly - Review pipeline schema (DDL)
+Database   : demo
+PostgreSQL : 16.15(Ubuntu16.15-0ubuntu0.24.04.1)
+Captured   : 2026-11-13 04:23:57 UTC
+Command    : psql -d demo -f db/schema/08_review_tables.sql
+============================================================================
+
+psql:db/schema/08_review_tables.sql:13: NOTICE:  table "audit_log" does not exist, skipping
+DROP TABLE
+psql:db/schema/08_review_tables.sql:14: NOTICE:  table "decisions" does not exist, skipping
+DROP TABLE
+psql:db/schema/08_review_tables.sql:15: NOTICE:  table "reviews" does not exist, skipping
+DROP TABLE
+psql:db/schema/08_review_tables.sql:16: NOTICE:  table "review_assignments" does not exist, skipping
+DROP TABLE
+psql:db/schema/08_review_tables.sql:17: NOTICE:  table "conflicts_of_interest" does not exist, skipping
+DROP TABLE
+psql:db/schema/08_review_tables.sql:18: NOTICE:  table "reviewer_topics" does not exist, skipping
+DROP TABLE
+CREATE TABLE
+COMMENT
+CREATE TABLE
+COMMENT
+CREATE TABLE
+COMMENT
+CREATE TABLE
+COMMENT
+CREATE TABLE
+COMMENT
+CREATE TABLE
+COMMENT
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX

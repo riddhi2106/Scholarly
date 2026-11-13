@@ -1,0 +1,22 @@
+============================================================================
+Scholarly - Core Platform constraint tests
+Database   : demo
+PostgreSQL : 16.15(Ubuntu16.15-0ubuntu0.24.04.1)
+Captured   : 2026-11-13 04:23:57 UTC
+Command    : psql -d demo -f db/tests/04_constraint_tests.sql
+============================================================================
+
+psql:db/tests/04_constraint_tests.sql:16: NOTICE:  TEST 1 PASSED: Duplicate email correctly rejected with unique_violation.
+DO
+psql:db/tests/04_constraint_tests.sql:36: NOTICE:  TEST 2 PASSED: Invalid conference dates correctly rejected with check_violation.
+DO
+psql:db/tests/04_constraint_tests.sql:49: NOTICE:  TEST 3 PASSED: Invalid system role correctly rejected with check_violation.
+DO
+psql:db/tests/04_constraint_tests.sql:62: NOTICE:  TEST 4 PASSED: Non-existent conference_id correctly rejected with foreign_key_violation.
+DO
+psql:db/tests/04_constraint_tests.sql:75: NOTICE:  TEST 5 PASSED: Submission to closed conference rejected with: Cannot submit paper: Conference 3 is currently in closed status, not open
+DO
+psql:db/tests/04_constraint_tests.sql:90: NOTICE:  TEST 6 PASSED: Duplicate author order correctly rejected with unique_violation.
+DO
+psql:db/tests/04_constraint_tests.sql:105: NOTICE:  TEST 7 PASSED: Conference deletion blocked by ON DELETE RESTRICT (foreign_key_violation).
+DO

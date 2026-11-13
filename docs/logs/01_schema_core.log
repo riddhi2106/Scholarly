@@ -1,0 +1,56 @@
+============================================================================
+Scholarly - Core Platform schema (DDL)
+Database   : demo
+PostgreSQL : 16.15(Ubuntu16.15-0ubuntu0.24.04.1)
+Captured   : 2026-11-13 04:23:56 UTC
+Command    : psql -d demo -f db/schema/01_core_tables.sql
+============================================================================
+
+CREATE EXTENSION
+psql:db/schema/01_core_tables.sql:13: NOTICE:  table "paper_topics" does not exist, skipping
+DROP TABLE
+psql:db/schema/01_core_tables.sql:14: NOTICE:  table "topics" does not exist, skipping
+DROP TABLE
+psql:db/schema/01_core_tables.sql:15: NOTICE:  table "paper_authors" does not exist, skipping
+DROP TABLE
+psql:db/schema/01_core_tables.sql:16: NOTICE:  table "papers" does not exist, skipping
+DROP TABLE
+psql:db/schema/01_core_tables.sql:17: NOTICE:  table "conference_memberships" does not exist, skipping
+DROP TABLE
+psql:db/schema/01_core_tables.sql:18: NOTICE:  table "conferences" does not exist, skipping
+DROP TABLE
+psql:db/schema/01_core_tables.sql:19: NOTICE:  table "person_affiliations" does not exist, skipping
+DROP TABLE
+psql:db/schema/01_core_tables.sql:20: NOTICE:  table "affiliations" does not exist, skipping
+DROP TABLE
+psql:db/schema/01_core_tables.sql:21: NOTICE:  table "reviewer_profiles" does not exist, skipping
+DROP TABLE
+psql:db/schema/01_core_tables.sql:22: NOTICE:  table "author_profiles" does not exist, skipping
+DROP TABLE
+psql:db/schema/01_core_tables.sql:23: NOTICE:  table "user_accounts" does not exist, skipping
+DROP TABLE
+psql:db/schema/01_core_tables.sql:24: NOTICE:  table "people" does not exist, skipping
+DROP TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX

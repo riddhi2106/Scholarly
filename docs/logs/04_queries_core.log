@@ -1,0 +1,46 @@
+============================================================================
+Scholarly - Core Platform demonstration queries
+Database   : demo
+PostgreSQL : 16.15(Ubuntu16.15-0ubuntu0.24.04.1)
+Captured   : 2026-11-13 04:23:57 UTC
+Command    : psql -d demo -f db/queries/05_demonstration_queries.sql
+============================================================================
+
+ conference | year | paper_id |                              paper_title                              | corresponding_author |   author_email   |         institution         
+------------+------+----------+-----------------------------------------------------------------------+----------------------+------------------+-----------------------------
+ VLDB       | 2026 |        1 | Adaptive Query Routing in Distributed Multi-Cloud PostgreSQL Clusters | Riddhi Mundada       | riddhi@pes.edu   | PES University
+ VLDB       | 2026 |        2 | Efficient High-Dimensional Vector Search with Dynamic Clustering      | David Kumar          | david@iisc.ac.in | Indian Institute of Science
+(2 rows)
+
+ conference_id |                  conference_name                  | acronym | conference_status | total_submissions | distinct_submitters 
+---------------+---------------------------------------------------+---------+-------------------+-------------------+---------------------
+             1 | International Conference on Very Large Data Bases | VLDB    | open              |                 2 |                   2
+(1 row)
+
+ topic_id |            topic_name             | paper_count | involved_authors 
+----------+-----------------------------------+-------------+------------------
+        4 | Full-Text Retrieval               |           3 |                3
+        3 | Vector Indexing & Semantic Search |           3 |                3
+        5 | Cloud-Native & Serverless Data    |           2 |                2
+        1 | Distributed Query Processing      |           2 |                2
+        6 | Graph Data Management             |           0 |                0
+        2 | Transaction Processing & MVCC     |           0 |                0
+(6 rows)
+
+ person_id |   full_name    |      email       
+-----------+----------------+------------------
+         3 | Riddhi Mundada | riddhi@pes.edu
+         4 | David Kumar    | david@iisc.ac.in
+(2 rows)
+
+ person_id |  full_name  |      email       | total_papers 
+-----------+-------------+------------------+--------------
+         4 | David Kumar | david@iisc.ac.in |            2
+(1 row)
+
+ paper_id |                                 title                                 |    rank     
+----------+-----------------------------------------------------------------------+-------------
+        1 | Adaptive Query Routing in Distributed Multi-Cloud PostgreSQL Clusters | 0.037995443
+        2 | Efficient High-Dimensional Vector Search with Dynamic Clustering      | 0.030396355
+(2 rows)
+

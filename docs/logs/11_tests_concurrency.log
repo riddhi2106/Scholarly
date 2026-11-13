@@ -1,0 +1,31 @@
+============================================================================
+Scholarly - Reviewer quota concurrency test
+Database   : demo
+PostgreSQL : 16.15(Ubuntu16.15-0ubuntu0.24.04.1)
+Captured   : 2026-11-13 04:24:04 UTC
+Command    : ./db/tests/13_concurrency_test.sh demo
+============================================================================
+
+=== Reviewer quota concurrency test (database: demo) ===
+
+Reviewer under test : 101
+Active assignments  : 3
+Original cap        : 15
+Contended papers    : 1002 and 1003
+
+Cap pinned to 4, so exactly one slot is free.
+Firing two concurrent sessions...
+
+  [session A] inserted, holding transaction open
+  [session A] 
+  [session A] committed
+  [session B] ERROR:  Reviewer workload exceeded: reviewer 101 already holds 4 of 4 permitted active assignments on conference 4
+  [session B] CONTEXT:  PL/pgSQL function trg_fn_enforce_reviewer_load() line 48 at RAISE
+  [session B] ERROR:  current transaction is aborted, commands ignored until end of transaction block
+  [session B] committed
+
+Assignments created by the race : 1 (expected 1)
+Reviewer active total           : 4 (cap was 4)
+
+PASSED: exactly one session claimed the last slot; the cap held.
+State restored.

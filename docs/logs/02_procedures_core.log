@@ -1,0 +1,18 @@
+============================================================================
+Scholarly - Core Platform triggers and procedures
+Database   : demo
+PostgreSQL : 16.15(Ubuntu16.15-0ubuntu0.24.04.1)
+Captured   : 2026-11-13 04:23:56 UTC
+Command    : psql -d demo -f db/procedures/02_advanced_features.sql
+============================================================================
+
+CREATE FUNCTION
+psql:db/procedures/02_advanced_features.sql:16: NOTICE:  trigger "trg_papers_updated_at" for relation "papers" does not exist, skipping
+DROP TRIGGER
+CREATE TRIGGER
+CREATE FUNCTION
+psql:db/procedures/02_advanced_features.sql:51: NOTICE:  trigger "trg_enforce_paper_submission_window" for relation "papers" does not exist, skipping
+DROP TRIGGER
+CREATE TRIGGER
+CREATE PROCEDURE
+CREATE VIEW
